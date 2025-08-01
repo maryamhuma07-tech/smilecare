@@ -1,0 +1,567 @@
+/* Import Google Font*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+/* Reset and base font styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Full-page layout and hidden overflow */
+body {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Sidebar container */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 78px;
+  background: #4670aa;
+  padding: 6px 14px;
+  transition: all 0.5s ease;
+}
+
+/* Sidebar expanded state */
+.sidebar.active {
+  width: 250px;
+}
+
+/* Logo content hidden by default */
+.sidebar .logo_content .logo {
+  margin-top: 70px;
+  color: #FFF;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+/* Logo content visible when sidebar is active */
+.sidebar.active .logo_content .logo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Logo image */
+.logo_content .logo img {
+  width: 90px;
+  border-radius: 40%;
+  margin-left: 5.6px;
+}
+
+/* Logo name text */
+.logo_content .logo .logo_name {
+  font-size: 20px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+/* Toggle button (hamburger or arrow) */
+.sidebar #btn {
+  position: absolute;
+  color: #FFF;
+  left: 50%;
+  top: 6px;
+  font-size: 20px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  transform: translateX(-50%);
+  transition: 0.6s ease;
+}
+
+/* Toggle button repositioned in active state */
+.sidebar.active #btn {
+  left: 90%;
+}
+
+/* Sidebar menu list */
+.sidebar ul {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Sidebar menu item */
+.sidebar ul li {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin: 0 5px;
+  list-style: none;
+  line-height: 50px;
+  right: 5px;
+}
+
+/* Sidebar link */
+.sidebar ul li a {
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+/* Hover effect for links */
+.sidebar ul li a:hover {
+  background: #FFF;
+  color: #11101D;
+}
+
+/* Icon inside link */
+.sidebar ul li a i {
+  height: 50px;
+  min-width: 50px;
+  border-radius: 12px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Link label hidden by default */
+.sidebar .links_name {
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+/* Link label visible when sidebar is active */
+.sidebar.active .links_name {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Logout item styling */
+.sidebar ul li.logout {
+  font-size: 17.7px;
+  margin-top: auto;
+}
+
+/* Main content layout */
+.home_content {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 88px);
+  left: 88px;
+  transition: all 0.5s ease;
+  margin-left: 90.5px;
+  margin-top: 50px;
+}
+
+/* Main content adjusted for active sidebar */
+.sidebar.active ~ .home_content {
+  width: calc(100% - 185px);
+  left: 185px;
+}
+
+/* Responsive layout for screen widths below 1200px */
+@media (max-width: 1200px) {
+  .home_content {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+
+  .home_content main.table {
+    transition: 0.5s;
+  }
+
+  .sidebar.active ~ .home_content {
+    width: calc(100% - 170px);
+    left: 200px;
+  }
+
+  .sidebar.active ~ .home_content main.table {
+    width: 75vw; 
+    transition: 0.5s;
+  }
+}
+
+/* Additional responsive breakpoints for smaller screens */
+@media (max-width: 1000px) {
+  .home_content {
+    width: calc(100% - 38px);
+    left: 38px;
+  }
+
+  .home_content main.table {
+    transition: 0.5s;
+  }
+
+  .sidebar.active ~ .home_content {
+    width: calc(100% - 170px);
+    left: 200px;
+  }
+
+  .sidebar.active ~ .home_content main.table {
+    width: 73vw; 
+    transition: 0.5s;
+  }
+}
+
+@media (max-width: 940px) {
+  .home_content {
+    width: calc(100% - 38px);
+    left: 38px;
+  }
+
+  .home_content main.table {
+    transition: 0.5s;
+  }
+
+  .sidebar.active ~ .home_content {
+    width: calc(100% - 170px);
+    left: 200px;
+  }
+
+  .sidebar.active ~ .home_content main.table {
+    width: 68vw; 
+    transition: 0.5s;
+  }
+}
+
+@media (max-width: 800px) {
+  .home_content {
+    width: calc(100% - 38px);
+    left: 38px;
+  }
+
+  .home_content main.table {
+    transition: 0.5s;
+  }
+
+  .sidebar.active ~ .home_content {
+    width: calc(100% - 170px);
+    left: 200px;
+  }
+
+  .sidebar.active ~ .home_content main.table {
+    width: 64vw; 
+    transition: 0.5s;
+  }
+}
+
+@media (max-width: 700px) {
+  .home_content {
+    width: calc(100% - 38px);
+    left: 38px;
+  }
+
+  .home_content main.table {
+    transition: 0.5s;
+    width: 78vw;
+  }
+
+  .sidebar.active ~ .home_content {
+    width: calc(100% - 170px);
+    left: 200px;
+  }
+
+  .sidebar.active ~ .home_content main.table {
+    width: 60vw; 
+    transition: 0.5s;
+  }
+}
+
+/* Adjustments for mobile and very small screens */
+@media (max-width: 650px) {
+  .home_content {
+    width: calc(100% - 38px);
+    left: 38px;
+  }
+
+  .home_content main.table {
+    transition: 0.5s;
+    width: 73vw;
+  }
+
+  .sidebar.active ~ .home_content {
+    width: calc(100% - 170px);
+    left: 200px;
+  }
+
+  .sidebar.active ~ .home_content main.table {
+    width: 56vw; 
+    transition: 0.5s;
+  }
+
+  .table__header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    gap: 0.7rem;
+  }
+
+  .table__header h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .home_content {
+    width: calc(100% - 10px);
+    left: 10px;
+  }
+
+  .home_content main.table {
+    transition: 0.5s;
+    width: 73vw;
+  }
+
+  .sidebar.active ~ .home_content {
+    width: calc(100% - 170px);
+    left: 200px;
+  }
+
+  .sidebar.active ~ .home_content main.table {
+    width: 38vw; 
+    transition: 0.5s;
+  }
+
+  .table__header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    gap: 0.7rem;
+  }
+
+  .table__header h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+}
+
+/* Text container positioning */
+.text-container {
+  position: fixed;
+}
+
+/* Large heading text */
+.home_content .text-1 {
+  font-size: 3em;
+  font-weight: 400;
+  color: #2d5398;
+  transition: font-size 0.4s ease, margin-left 0.4s ease;
+}
+
+/* Smaller subheading text */
+.home_content .text-2 {
+  font-size: 1em;
+  font-weight: 400;
+  color: #2d5398;
+  margin-left: auto;
+  transition: font-size 0.4s ease, margin-left 0.4s ease;
+  margin-left: 10px;
+}
+
+/* Responsive font scaling for heading and subheading */
+@media (max-width: 1200px) {
+  .home_content .text-1 {
+    font-size: 2.2em;
+  }
+
+  .home_content .text-2 {
+    font-size: 0.85em;
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: 900px) {
+  .home_content .text-1 {
+    font-size: 1.8em;
+    padding-right: 60px;
+  }
+
+  .home_content .text-2 {
+    font-size: 0.8em;
+    position: fixed;  
+    padding: 60px;
+    padding-left: 4px;  
+    padding-top: 0px;    
+  }
+}
+
+@media (max-width: 750px) {
+  .home_content .text-1 {
+    font-size: 1.6em;
+    padding-right: 60px;
+  }
+
+  .home_content .text-2 {
+    font-size: 0.8em;
+    position: fixed;  
+    padding: 70px;
+    padding-left: 4px;  
+    padding-top: 0px;    
+  }
+}
+
+/* Main table container */
+main.table {
+  width: 80vw;
+  height: 80vh;
+  overflow: hidden;
+}
+
+/* Table header styling */
+.table__header {
+  width: 100%;
+  height: 10%;
+  background-color: #fff4;
+  padding: 0.8rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Scrollable table body */
+.table__body {
+  width: 95%;
+  max-height: calc(89% - 1.6rem);
+  margin: .8rem auto;
+  border-radius: .6rem;
+  overflow: auto;
+  overflow: overlay;
+}
+
+/* Custom scrollbar */
+.table__body::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb {
+  border-radius: .5rem;
+  background-color: #0004;
+  visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+/* Table layout */
+table {
+  width: 100%;
+}
+
+/* Table cells */
+table, th, td {
+  border-collapse: collapse;
+  padding: 1rem;
+  text-align: left;
+}
+
+/* Active sort column styling */
+thead th.active,
+tbody td.active {
+  color: #001cbd;
+}
+
+/* Sticky table headers */
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0; 
+  cursor: pointer;
+  text-transform: capitalize;
+  z-index: 1; 
+  background-color: #a9bee4;
+}
+
+
+/* Table row styling */
+tbody {
+  background-color: transparent;
+}
+
+tbody tr {
+  --delay: .1s;
+  transition: .5s ease-in-out var(--delay), background-color 0s;
+}
+
+/* Hide animation for rows */
+tbody tr.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/* Hover effect on rows */
+tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Cell transition effects */
+tbody tr td,
+tbody tr td p {
+  transition: .2s ease-in-out;
+}
+
+/* Hide cell content with animation */
+tbody tr.hide td,
+tbody tr.hide td p {
+  padding: 0;
+  font: 0 / 0 sans-serif;
+  transition: .2s ease-in-out .5s;
+}
+
+/* Status tag styles */
+.status {
+  padding: .4rem 4rem;
+  border-radius: 2rem;
+  text-align: center;
+}
+
+.status.male {
+  background-color: #a3d4ff;
+  color: #1d4d88;
+}
+
+.status.female {
+  background-color: #ffabdd;
+  color: #940878;
+}
+
+/* Force minimum width for responsive columns */
+@media (max-width: 1000px) {
+  td:not(:first-of-type) {
+    min-width: 12.1rem;
+  }
+}
+
+/* Table header hover effect */
+thead th:hover {
+  color: #001cbd;
+}
+
+/* Responsive header for small screens */
+@media (max-width: 700px) {
+  .table__header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    gap: 0.7rem;
+  }
+
+  .table__header h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+}

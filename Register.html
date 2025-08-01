@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta tags for character encoding and responsiveness -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>SmileCare Dental Clinic</title>
+    <!-- External CSS file for Register page -->
+    <link rel="stylesheet" href="Register.css">
+    <!-- Link to external CSS and icon libraries -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <!-- Login icon linking to Login page -->
+        <div class="Login-in">
+            <a href="Login.html"><i class="ri-account-circle-line"></i></a>
+        </div>
+    
+        <!-- Navigation menu with links -->
+        <div class="navigation">
+            <div class="navigation-items">
+                <a href="Home.html">Home</a>
+                <a href="Services.html">Services</a>
+                <a href="Doctors.html">Doctors</a>
+                <a href="Register.html">Register</a>
+            </div>
+        </div>
+    
+        <!-- Logo -->
+        <div class="logo">
+            <img src="SmileCareLogo.png">
+        </div>
+    
+        <!-- Menu button (used for mobile toggle) -->
+        <div class="menu-btn"></div>
+    </header>
+
+        <!-- Patient Registration Form  -->
+    <section class="Patient-Register">
+        <div class="container">
+            <div class="box">
+
+                <!-- Registration form -->
+                <form class="box-register" id="Register">
+                    <div class="top-header">
+                        <h3>Register</h3>
+                    </div>
+
+                    <div class="input-group">
+                        <!-- Username input -->
+                        <div class="input-field">
+                            <input type="text" class="input-box" id="RegUsername" required>
+                            <label for="logUsername">Full name</label>
+                        </div>
+
+                        <!-- Date of birth input -->
+                        <div class="input-field">
+                            <input type="date" class="input-box" id="regDate-Birth" required>
+                            <label for="regDate-Birth">Date of Birth</label>
+                        </div>
+
+                        <!-- Gender dropdown -->
+                        <div class="dropdown">
+                            <div class="select">
+                                <span class="selected">Gender</span>
+                                <div class="caret"></div>
+                            </div>
+                            <ul class="menu">
+                                <li>Male</li>
+                                <li>Female</li>
+                            </ul>
+                        </div>
+                        <!-- Date and Time input -->
+                        <div class="input-field">
+                            <input type="datetime-local" class="input-box" id="regDate-Time" required>
+                            <label for="regDate-Time">Date and Time</label>
+                        </div>
+
+                        <!-- Treatment dropdown -->
+                        <div class="dropdown">
+                            <div class="select">
+                                <span class="selected">Select Treatment</span>
+                                <div class="caret"></div> 
+                            </div>
+                            <ul class="menu">
+                                <!-- List of treatment options -->
+                                <li>Tooth Implant</li>
+                                <li>Veneer</li>
+                                <li>Filling</li>
+                                <li>Crown</li>
+                                <li>Scaling</li>
+                                <li>Tooth Removal</li>
+                                <li>Braces</li>
+                                <li>Root Canal</li>
+                                <li>Teeth Whitening</li>
+                            </ul>
+                        </div>
+
+                        <!-- Submit button that redirects to Login page -->
+                        <div class="input-field">
+                            <input type="submit" class="input-submit" value="Register" required>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for dropdown functionality and form submission -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Setup dropdown functionality
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                const select = dropdown.querySelector('.select');
+                const selected = dropdown.querySelector('.selected');
+                const menu = dropdown.querySelector('.menu');
+
+                select.addEventListener('click', () => {
+                    // Close other open dropdown menus
+                    document.querySelectorAll('.menu.menu-open').forEach(openMenu => {
+                        if (openMenu !== menu) openMenu.classList.remove('menu-open');
+                    });
+                    menu.classList.toggle('menu-open');
+                });
+
+                menu.querySelectorAll('li').forEach(item => {
+                    item.addEventListener('click', () => {
+                        selected.innerText = item.innerText;
+                        menu.classList.remove('menu-open');
+                    });
+                });
+            });
+
+            // Close dropdown if clicked outside
+            document.addEventListener('click', (e) => {
+                document.querySelectorAll('.menu.menu-open').forEach(menu => {
+                    if (!menu.parentElement.contains(e.target)) {
+                        menu.classList.remove('menu-open');
+                    }
+                });
+            });
+
+            // Handle form submit
+            const registerForm = document.querySelector('.box-register');
+            if (!registerForm) return;
+
+            registerForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('RegUsername').value.trim();
+                const dateOfBirth = document.getElementById('regDate-Birth').value.trim();
+                const dateTime = document.getElementById('regDate-Time').value.trim();
+
+                const dropdowns = document.querySelectorAll('.dropdown .selected');
+                const gender = dropdowns[0].innerText !== 'Gender' ? dropdowns[0].innerText : '';
+                const treatment = dropdowns[1].innerText !== 'Select Treatment' ? dropdowns[1].innerText : '';
+
+                if (!gender || !treatment) {
+                    alert('Please select Gender and Treatment.');
+                    return;
+                }
+
+                const nameParts = name.split(' ');
+                const firstName = nameParts[0] || '';
+                const lastName = nameParts.slice(1).join(' ') || '';
+
+                const data = {
+                    firstName,
+                    lastName,
+                    dob: dateOfBirth,
+                    gender,
+                    appointmentTime: dateTime,
+                    treatment
+                };
+
+                try {
+                    const response = await fetch('http://localhost:3002/submit-appointment', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok && result.success) {
+                        alert('Booking successful!');
+                        registerForm.reset();
+                        dropdowns[0].innerText = 'Gender';
+                        dropdowns[1].innerText = 'Select Treatment';
+                    } else {
+                        alert('Booking failed: ' + (result.message || 'Unknown error'));
+                    }
+                } catch (err) {
+                    alert('Error connecting to server.');
+                    console.error(err);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

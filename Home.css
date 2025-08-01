@@ -1,0 +1,1380 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/* Reset margins, paddings, and box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main container for the cookie warning popup */
+.cookie-container {
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0s 0.5s;
+}
+
+/* Styling for the cookie warning box */
+.cookie-warning {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 30px;
+  border-radius: 4px;
+  color: #FFF;
+  background: #484848;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
+
+/* Title styling for the cookie warning */
+.cookie-title {
+  margin-top: 20px;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+/* Text styling for the cookie warning message */
+.cookie-text {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+  line-height: 1.8em;
+}
+
+/* Styling for links within the cookie warning box */
+.cookie-warning a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Wrapper for the buttons in the cookie warning */
+.cookie-btn-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+}
+
+/* Styling for individual buttons in the cookie warning */
+.cookie-btn {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 16px 24px;
+  border-radius: 2px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #FFF;
+  font-family: inherit;
+  transition: 0.15s ease;
+}
+
+/* Hover effect for the buttons */
+.cookie-btn:hover {
+  color: #111;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive Media */
+@media (max-width: 600px) {
+  .cookie-title {
+      font-size: 1.3rem;
+  }
+
+  .cookie-text {
+      font-size: 1.1rem;
+  }
+
+  .cookie-btn {
+      flex: 1 1 100%;
+      margin-right: 0;
+      font-size: 1.1rem;
+      padding: 10px 16px;
+  }
+
+  .cookie-btn-wrapper {
+      flex-direction: column;
+      align-items: stretch;
+  }
+}
+
+/* Header */
+
+header {
+  font-family: "Poppins", sans-serif;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 160px;
+  transition: 0.5s ease;
+  background-color: #DEDBD6;
+}
+
+/* Navigation Container */
+
+header .navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Navigation Links */
+
+header .navigation .navigation-items a {
+  position: relative;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 500;
+  text-decoration: none;
+  right: 100px;
+  margin-right: 40px;
+  transition: 0.3s ease;
+}
+
+/* Underline animation on hover */
+
+header .navigation .navigation-items a:before {
+  content: '';
+  position: absolute;
+  background: #fff;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  transition: 0.55s ease;
+}
+
+header .navigation .navigation-items a:hover:before {
+  width: 100%;
+}
+
+/* Logo Container */
+
+header .logo {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  flex-grow: 1;
+}
+
+/* Logo Image */
+
+header .logo img {
+  height: 140px;
+  margin-right: 420px;
+}
+
+/* Login Icon Container */
+
+header .Login-in {
+  position: absolute;
+  right: 170px;
+  display: flex;
+  transition: 0.3s ease;
+  z-index: 999;
+}
+
+/* Login Icon */
+
+header .Login-in a {
+  color: #fff;
+  font-size: 3em;
+  transition: 0.5s ease;
+  text-decoration: none;
+  position: relative;
+  z-index: 9999;
+}
+
+/* Margin between multiple Login Icon */
+
+header .Login-in a:not(:first-child) {
+  margin-bottom: 20px;
+}
+
+/* Hover scale effect on Login Icon */
+
+header .Login-in a:hover {
+  transform: scale(1.3);
+}
+
+/* Responsive Media */
+
+
+@media (max-width: 1340px) {
+  header {
+    padding: 0px 80px;
+  }
+
+  header .logo img {
+    height: 140px;
+    margin-right: 130px;
+  }
+
+  header .navigation .navigation-items a {
+    font-size: 1.1em;
+    margin-right: 20px;
+    right: 40px;
+  }
+
+  header .Login-in {
+    right: 60px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  header .navigation.menu-active {
+    width: 300px;
+    right: 0;
+  }
+
+  header .navigation.menu-active .navigation-items {
+    padding: 30px;
+  }
+
+  header .navigation.menu-active .navigation-items a {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+  }
+}
+
+
+@media (max-width: 992px) {
+  header .logo img {
+    height: 140px;
+    margin-right: 0px;
+  }
+
+  header .navigation {
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    display: none;
+  }
+
+  header .Login-in {
+    transform: translateX(200%);
+    transition: transform 0.4s ease-in-out;
+    display: none;
+  }
+
+  header .navigation.menu-active {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 330px;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(25px);
+    background-color: rgba(255, 255, 255, 0.244);
+    border-radius: 10px;
+    z-index: 999;
+    animation: slideIn 0.4s forwards ease-in-out;
+  }
+
+  header .navigation.menu-active .navigation-items {
+    margin-left: 109px;
+    margin-top: 50px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  header .navigation.menu-active .navigation-items a {
+    color: #ffffff;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+  }
+
+  header .navigation .navigation-items a:before {
+    background: #ffffff;
+    height: 0.2em;
+  }
+
+  header .Login-in.menu-active {
+    display: flex;
+    position: fixed;
+    top: 120px;
+    right: 127px;
+    animation: slideInLogin 0.4s forwards ease-in-out;
+    z-index: 1000;
+  }
+
+  header .Login-in.menu-active a {
+    color: #ffffff;
+    font-size: 4em;
+  }
+
+  /* Slide-in animation for navigation */
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+
+  /* Slide-out animation for navigation */
+  @keyframes slideOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+  }
+
+  /* Slide-in animation for login icon */
+  @keyframes slideInLogin {
+    from { transform: translateX(500%); }
+    to { transform: translateX(0); }
+  }
+
+  /* Slide-out animation for login icon */
+  @keyframes slideOutLogin {
+    from { transform: translateX(0); }
+    to { transform: translateX(500%); }
+  }
+
+  /* Menu button styling  */
+  .menu-btn {
+    background: url(menu.png) no-repeat;
+    background-size: 30px;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1000;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Close icon styling when menu is active */
+  .menu-btn.menu-active {
+    background: url(close.png) no-repeat;
+    background-size: 25px;
+    background-position: center;
+    z-index: 1001;
+    transform: rotate(90deg);
+  }
+}
+
+
+/* Main Section */
+body {
+  background-color: #DEDBD6;
+}
+
+/* Home Section */
+.Home {
+  margin-bottom: 210px;
+}
+
+.Home {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #DEDBD6;
+}
+
+/* Home content positioning */
+.Home-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+
+/* Home data section (text content) styling */
+.Home .Home-data {
+  z-index: 1;
+  color: #FFF;
+  width: 70%;
+  margin-left: 80px;
+  margin-bottom: 145px;
+}
+
+/* Home heading styling */
+.Home .Home-data h2 {
+  font-size: 5.8em;
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 75px;
+  padding: 40px 20px;
+  padding-top: 130px;
+}
+
+/* Button styling */
+.btn {
+  font-family: "Poppins", sans-serif;
+  margin-left: 104px;
+  padding: 15px 20px;
+  position: relative;
+  color: #1c140d;
+  font-size: 19px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 1px 1px 6px rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: 400ms;
+}
+
+/* Button hover effects */
+.btn:hover {
+  background-color: rgb(255, 255, 255);
+  padding-right: 40px;
+  box-shadow: 1px 1px 6px rgb(255, 255, 255);
+}
+
+/* Arrow icon inside the button */
+.btn .ri-arrow-right-line {
+  position: absolute;
+  top: 33%;
+  margin-left: 6px;
+  color: #000000;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+/* Arrow icon animation on button hover */
+.btn:hover .ri-arrow-right-line {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Button active state styling */
+.btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: scaleX(0);
+  transition: 100ms ease-in-out transform;
+}
+
+/* Button active state scaling effect */
+.btn:active::before {
+  transform: scaleX(1);
+}
+
+
+/* Home image styling */
+.Home .Home-image img {
+  border-radius: 50px;
+  bottom: 300px;
+  z-index: 999;
+  width: 82%;
+}
+
+
+/* Responsive Media */
+@media (max-width: 1200px) {
+  .Home-content {
+    padding-top: 100px;
+  }
+
+  .Home .Home-data {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .Home .Home-data h2 {
+    padding-top: 50px;
+  }
+
+  .Home .Home-image {
+    width: 100%;
+    margin-bottom: 120px;
+  }
+
+  .Home .Home-data h2 {
+    font-size: 4.5em;
+    line-height: 65px;
+  }
+
+  .btn {
+    margin-left: 0;
+  }
+
+  .Home .Home-image img {
+    width: 90%;
+  }
+}
+
+@media (max-width: 992px) {
+  .Home-content {
+    padding-top: 240px;
+  }
+  .Home-content {
+    flex-direction: column;
+    text-align: center;
+    margin-top: 300px;
+  }
+
+  .Home .Home-data {
+    margin: 0 auto 60px auto;
+    width: 90%;
+  }
+
+  .Home .Home-image img {
+    width: 70%;
+  }
+  .btn .ri-arrow-right-line {
+    top: 35%;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .Home-content {
+    margin-top: 320px;
+  }
+
+  .Home .Home-data h2 {
+    font-size: 4em;
+    line-height: 59px;
+  }
+
+  .btn {
+    font-size: 16px;
+  }
+
+  .Home .Home-image img {
+    width: 80%;
+  }
+
+}
+
+@media (max-width: 580px) {
+  .Home-content {
+    margin-top: 100px;
+  }
+
+  .Home .Home-data h2 {
+    font-size: 3.8em;
+    line-height: 57px;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
+
+  .Home .Home-image img {
+    width: 70%;
+  }
+  .btn .ri-arrow-right-line {
+    top: 36.5%;
+  }
+  
+}
+
+
+
+/* About Us */
+/* Styling for About Us Section 1 */
+.About-us-1,
+.About-us-2 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 90px;
+  color: #000000;
+  background-color: #DEDBD6;
+}
+
+/* Adds margin below the About Us Section 2 */
+.About-us-2 {
+  margin-bottom: 120px;
+}
+
+/* Container for all About Us content */
+.container-about-us {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Title styling for the About Us section */
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+/* Flex container for the content sections */
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 1150px;
+  width: 100%;
+  gap: 30px;
+}
+
+/* Styling for the first information section */
+.info-1,
+.info-2 {
+  flex: 1 1 400px;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Styling for the second information section (adds margin left) */
+.info-2 {
+  margin-left: 50px;
+}
+
+/* Styling for the first information section (adds margin right) */
+.info-1 {
+  margin-right: 50px;
+}
+
+/* Container for the first image */
+.image-1,
+.image-2 {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Styling for the first image */
+.image-1 img,
+.image-2 img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+  max-height: 400px;
+}
+
+/* Additional margin styling for the first image */
+.image-1 img {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+/* Additional margin styling for the second image */
+.image-2 img {
+  margin-top: 20px;
+  margin-bottom: 70px;
+}
+
+
+/* Responsive Media */
+@media (max-width: 1200px) {
+    .About-us-1 {
+        margin-top: 200px;
+    }
+    .info-1,
+    .info-2 {
+        text-align: center;
+    }
+    .info-2 {
+      margin-left: 30px;
+    }
+    
+    .info-1 {
+      margin-right: 30px;
+    }
+    .image-1 img {
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+    .image-2 img {
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 992px) {
+    .About-us-1 {
+        margin-top: 500px;
+    }
+    .info-1,
+    .info-2 {
+        text-align: center;
+    }
+    .info-2 {
+      margin-left: 0px;
+    }
+    
+    .info-1 {
+      margin-right: 0px;
+    }
+    .image-1 img {
+        margin-top: 60px;
+        margin-bottom: 70px;
+    }
+    .image-2 img {
+        margin-top: 20px;
+        margin-bottom: 70px;
+    }
+    .image-1{
+        margin-top: 10px;
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    .About-us-1 {
+        margin-top: 300px;
+    }
+    .About-us-2 {
+        padding: 80px 40px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .info-2 {
+      margin-left: 0px;
+    }
+    
+    .info-1 {
+      margin-right: 0px;
+    }
+    .info-1,
+    .info-2 {
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 0px 30px;
+    }
+
+    .image-1 img,
+    .image-2 img{
+        border-radius: 10px;
+    }
+
+}
+
+/*Counter*/
+
+.Counter {
+  background-color: #DEDBD6;
+  padding-bottom: 232px; 
+}
+
+/* Styling for the counters wrapper */
+.counters {
+  padding: 60px 20px;
+  background-color: #DEDBD6;
+  color: #FFF;
+  text-align: center; 
+}
+
+/* Grid layout for the individual counters inside the counters section */
+.counters > div {
+  max-width: 1500px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 4em 2em; 
+}
+
+/* Styling for each individual counter box */
+.counter {
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  background-color: #DEDBD6;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+/* Styling for the icon inside the counter */
+.counter i {
+  font-size: 3em;  
+  color: #FFF;     
+  margin-bottom: 0.5em; 
+  display: block;   
+}
+
+/* Styling for the number/title in each counter */
+.counter h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em; 
+}
+
+/* Adds a vertical line to separate counters, except the last one */
+.counter:not(:last-child)::before {
+  content: '';
+  background: #FFF;
+  position: absolute;
+  width: 2px;
+  height: 11em;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -1em; 
+}
+
+
+/*Responsive Media*/
+
+@media screen and (max-width: 1300px) and (min-width: 900px){
+  .counters > div {
+    grid-template-columns: 1fr 1fr;
+  }
+  .counter:nth-child(2)::before{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .counters > div {
+    grid-template-columns: 1fr;
+    row-gap: 5em;
+  }
+  .counter:not(:last-child)::before {
+    width: 90%;
+    height: 2px;
+    top: initial;
+    right: initial;
+    bottom: -3em;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Customer Reviews */
+
+.Customer-Reveiws {
+  background-color: #DEDBD6; 
+}
+
+.Customer-Reveiws {
+  margin-top: 50px; 
+  padding-bottom: 230px; 
+  width: 100%; 
+  height: 100vh; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  background-color: #DEDBD6; 
+}
+
+/* Container for the testimonials section */
+.testimonials-section {
+  width: 100%;
+  padding: 0px 8%;
+}
+
+/* Header area within testimonials */
+.testimonials-section .section-header {
+  max-width: 700px;
+  text-align: center;
+  margin: 30px auto 40px; 
+}
+
+/* Header text styling */
+.section-header h1 {
+  position: relative;
+  font-size: 36px;
+  color: #000;
+}
+
+/* Container holding all testimonial cards */
+.testimonials-container {
+  position: relative;
+}
+
+/* Individual testimonial card */
+.testimonials-container .testimonial-card {
+  padding: 20px;
+}
+
+/* Body of the testimonial card */
+.testimonial-card .test-card-body {
+  background-color: #f6f6f672; 
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.12); 
+  padding: 20px;
+}
+
+/* Quote section (icon + heading) */
+.test-card-body .quote {
+  display: flex;
+  align-items: center;
+}
+
+/* Quote icon styling */
+.test-card-body .quote i {
+  font-size: 45px;
+  color: #000000;
+  margin-right: 20px;
+}
+
+/* Quote title text */
+.test-card-body .quote h2 {
+  color: #000000;
+}
+
+/* Testimonial description */
+.test-card-body p {
+  margin: 10px 0px 15px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #000000;
+}
+
+/* Rating section (stars) */
+.test-card-body .ratings {
+  margin-top: 20px;
+}
+
+/* Individual star styling */
+.test-card-body .ratings i {
+  font-size: 17px;
+  color: #ffe600;
+  cursor: pointer;
+}
+
+/* Profile section (user image + name) */
+.testimonial-card .profile {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+}
+
+/* User image container */
+.profile .profile-image {
+  width: 45px;
+  height: 45px;
+  border-radius: 20%; 
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+/* Image inside profile */
+.profile .profile-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20%;
+  object-fit: cover;
+}
+
+/* Profile description (name + role) */
+.profile .profile-desc {
+  display: flex;
+  flex-direction: column;
+}
+
+/* User name */
+.profile-desc span:nth-child(1) {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* User role or subtitle */
+.profile-desc span:nth-child(2) {
+  font-size: 15px;
+  color: #000000;
+}
+
+/* Carousel navigation (arrows) */
+.owl-nav {
+  position: absolute;
+  right: 20px;
+  bottom: -10px;
+}
+
+/* Style buttons to be circular */
+.owl-nav button {
+  border-radius: 50% !important;
+}
+
+/* Previous and Next arrow icons */
+.owl-nav .owl-prev i,
+.owl-nav .owl-next i {
+  padding: 10px !important;
+  border-radius: 50%;
+  font-size: 18px !important;
+  background-color: #f6f6f672 !important;
+  color: #3d3833;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+/* Hover effect on arrows */
+.owl-nav .owl-prev i:hover,
+.owl-nav .owl-next i:hover {
+  background-color: #3d3833 !important;
+  color: #e9e9e9;
+}
+
+/* Dots navigation styling */
+.owl-dots {
+  margin-top: 15px;
+}
+
+/* Default dot style */
+.owl-dots .owl-dot span {
+  background-color: #5d5853 !important;
+  padding: 6px !important;
+}
+
+/* Active dot style */
+.owl-dot.active span {
+  background-color: #ffffff !important;
+}
+
+/* Responsive Media */
+@media (max-width: 600px) {
+  .Customer-Reveiws {
+    padding-top: 320px;
+    padding-bottom: 600px;
+  }
+
+  .owl-nav {
+    position: relative !important;
+    bottom: auto !important;
+    top: 131px !important;
+    right: auto !important;
+    margin-top: 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .owl-nav button {
+    margin: 0 10px !important;
+  }
+}
+
+
+/*Footer*/
+
+/* Footer background color */
+.footer {
+  background: #343434;
+}
+
+/* Padding for the footer */
+.footer {
+  padding-top: 80px;
+  padding-bottom: 41px;
+}
+
+/* Container for the footer content with flexbox layout */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Footer content styling, flex properties for alignment */
+.footer-content {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Heading style within footer */
+.footer-content h3 {
+  font-size: 28px;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #FFF;
+}
+
+/* Paragraph styling within footer content */
+.footer-content p {
+  width: 190px;
+  margin: auto;
+  padding: 7px;
+  color: #FFF;
+  text-align: center;
+}
+
+
+/* Unordered list within footer content */
+.footer-content ul {
+  text-align: center;
+  color: #FFF;
+}
+
+/* Container for the list */
+.list {
+  padding: 0;
+  display: flex;
+  flex-direction: column;  /* Arrange items vertically in a column */
+  align-items: center;  /* Center the items horizontally */
+}
+
+/* List item styling */
+.list li {
+  list-style-type: none;
+  position: relative;
+  margin: 10px 0;  /* Optional: space between items */
+}
+
+/* Link styling */
+.list li a {
+  text-decoration: none;  /* Remove the underline */
+  color: white;  /* Text color */
+  font-size: 18px;  /* Adjust font size as needed */
+  padding: 5px 20px;  /* Padding around the link */
+  display: inline-block;  /* Ensures the padding is applied properly */
+  transition: color 0.4s ease;  /* Smooth color transition on hover */
+}
+
+/* Underline effect on hover for each list item */
+.list li a::after {
+  content: '';
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition-duration: 0.4s;
+}
+
+/* Hover effect: when the link is hovered, the underline appears */
+.list li a:hover::after {
+  width: 100%;  /* Underline expands */
+}
+
+
+/* Hover effects to display underline with varying width */
+.list li.Home-1:hover::before {
+  width: 56px;
+}
+
+.list li.Services:hover::before {
+  width: 73px;
+}
+
+.list li.Doctors:hover::before {
+  width: 73px;
+}
+
+.list li.Login-in:hover::before {
+  width: 75px;
+}
+
+.list li.Appointment:hover::before {
+  width: 164px;
+}
+
+/* Social icons container */
+.social-icons {
+  text-align: center;
+  padding: 0;
+}
+
+/* Anchor tag styling (no underline and white color) */
+.list a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+/* Anchor tag hover effect (white color on hover) */
+.list a:hover {
+  color: #ffffff;
+}
+
+/* Wrapper for social icons with flex layout */
+.wrapper {
+  padding-top: 68px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+
+/* Individual icon in the wrapper */
+.wrapper .icon {
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  text-decoration: none;
+}
+
+/* Styling for the circular icon background */
+.wrapper .icon span {
+  display: block;
+  height: 60px;
+  width: 60px;
+  color: #000;
+  background: #fff;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Icon font size inside the circle */
+.wrapper .icon span i {
+  line-height: 60px;
+  font-size: 25px;
+}
+
+/* Tooltip styling for social media icons */
+.wrapper .icon .tooltip {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  background: #fff;
+  color: #fff;
+  padding: 10px 18px;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 25px;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Show the tooltip on hover */
+.wrapper .icon:hover .tooltip {
+  top: -70px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Tooltip arrow positioning */
+.icon .tooltip:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  background: inherit;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Hover effect on the icon */
+.wrapper .icon:hover span {
+  color: #fff;
+}
+
+/* Hover effect on icon and tooltip */
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
+}
+
+/* Hover effect for each social media icon */
+.wrapper .facebook:hover span,
+.wrapper .facebook:hover .tooltip {
+  background: #3B5999;
+}
+
+.wrapper .instagram:hover span,
+.wrapper .instagram:hover .tooltip {
+  background: #e1306c;
+}
+
+.wrapper .linkedin:hover span,
+.wrapper .linkedin:hover .tooltip {
+  background: #102ea4;
+}
+
+/* Responsive Media */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-content {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 100px;
+  }
+
+  .footer-content p {
+    width: auto;
+  }
+
+  .wrapper {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .wrapper .icon {
+    margin: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-content h3 {
+    font-size: 22px;
+    transition: 0.5s ease-in-out;
+  }
+
+  .footer-content p,
+  .footer-content ul {
+    font-size: 14px;
+    transition: 0.5s ease-in-out;
+  }
+
+  .wrapper .icon span {
+    height: 50px;
+    width: 50px;
+  }
+
+  .wrapper .icon span i {
+    font-size: 20px;
+    line-height: 50px;
+  }
+
+  .wrapper .icon .tooltip {
+    font-size: 16px;
+    padding: 8px 14px;
+  }
+
+  .list li {
+    padding: 7px 0;
+  }
+
+  .list li::before {
+    bottom: 5px;
+    transition: 0.5s ease-in-out;
+  }
+}

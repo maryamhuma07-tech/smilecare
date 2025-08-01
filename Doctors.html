@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta tags for character encoding and responsiveness -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>SmileCare Dental Clinic</title>
+    <!-- External CSS file for Doctors page -->
+    <link rel="stylesheet" href="Doctors.css">
+    <!-- Link to external CSS and icon libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <!-- Login icon linking to login page -->
+        <div class="Login-in">
+            <a href="Login.html"><i class="ri-account-circle-line"></i></a>
+        </div>
+    
+        <!-- Navigation menu with links -->
+        <div class="navigation">
+            <div class="navigation-items">
+                <a href="Home.html">Home</a>
+                <a href="Services.html">Services</a>
+                <a href="Doctors.html">Doctors</a>
+                <a href="Register.html">Register</a>
+            </div>
+        </div>
+    
+        <!-- Logo -->
+        <div class="logo">
+            <img src="SmileCareLogo.png">
+        </div>
+    
+        <!-- Menu button (used for mobile toggle) -->
+        <div class="menu-btn"></div>
+    </header>
+    
+    <script>
+        // Select menu button, navigation menu, and login section from the dom
+        const menuBtn = document.querySelector(".menu-btn");
+        const navigation = document.querySelector(".navigation");
+        const login = document.querySelector(".Login-in");
+    
+        // Track whether the menu is currently open or closed
+        let isMenuOpen = false;
+    
+        // Add a click event listener to toggle the menu
+        menuBtn.addEventListener("click", () => {
+            isMenuOpen = !isMenuOpen;
+    
+            if (isMenuOpen) {
+                // If menu is opening
+                navigation.classList.add("menu-active");
+                login.classList.add("menu-active");
+
+                // Apply slide-in animation to both elements
+                navigation.style.animation = "slideIn 0.4s forwards ease-in-out";
+                login.style.animation = "slideInLogin 0.4s forwards ease-in-out";
+            } else {
+                // If menu is closing
+                navigation.style.animation = "slideOut 0.4s forwards ease-in-out";
+                login.style.animation = "slideOutLogin 0.4s forwards ease-in-out";
+
+                // Remove active classes after animation finishes
+                setTimeout(() => {
+                    navigation.classList.remove("menu-active");
+                    login.classList.remove("menu-active");
+                }, 400);
+            }
+
+            // Toggle the menu button's active state
+            menuBtn.classList.toggle("menu-active");
+        });
+    </script>
+    
+    <!-- Doctors section -->
+    <section class="Doctors">
+        <div class="grid">
+            <!-- Doctor card -->
+            <div class="card">
+                <div class="img-box">
+                    <img src="Doctor 1.png" alt="grimesdentalgroup">
+                </div>
+                <div class="card-content">
+                    <h1 class="card-heading">Dr. Ava Grace</h1>
+                    <p class="card-text">
+                        Dr. Ava Grace is a compassionate dentist known for her gentle approach and attention to detail. She specializes in 
+                        braces and tooth removal dentistry to ensure healthy, beautiful smiles.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Doctor card -->
+            <div class="card">
+                <div class="img-box">
+                    <img src="Doctor 2.jpg" alt="grimesdentalgroup">
+                </div>
+                <div class="card-content">
+                    <h1 class="card-heading">Dr. Laura Beth</h1>
+                    <p class="card-text">
+                        Dr. Laura Beth is dedicated to cosmetic and aesthetic dentistry. Her expertise in 
+                        filling and whitening treatments helps enhance the natural beauty of smiles.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Doctor card -->
+            <div class="card">
+                <div class="img-box">
+                    <img src="Doctor 3.avif" alt="oprahdaily">
+                </div>
+                <div class="card-content">
+                    <h1 class="card-heading">Dr. Casey Blair</h1>
+                    <p class="card-text">
+                        Dr. Casey Blair is an experienced dentist focused on restorative treatments, including crowns and root canals. She is known 
+                        for her thorough care and dedication to patient comfort.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Doctor card -->
+            <div class="card">
+                <div class="img-box">
+                    <img src="Doctor 4.jpg" alt="grimesdentalgroup">
+                </div>
+                <div class="card-content">
+                    <h1 class="card-heading">Dr. Ella Rose</h1>
+                    <p class="card-text">
+                        Dr. Ella Rose is a skilled dentist with a passion for creating customized treatment plans. She specializes in scaling and 
+                        braces dental treatments for optimal oral health.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Doctor card -->
+            <div class="card">
+                <div class="img-box">
+                    <img src="Doctor 5.jpg" alt="grimesdentalgroup">
+                </div>
+                <div class="card-content">
+                    <h1 class="card-heading">Dr. Lizzy Kate</h1>
+                    <p class="card-text">
+                        Dr. Lizzy Kate specializes in scaling and implant treatments, helping patients maintain optimal oral health and restore 
+                        their smiles with durable solutions.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Doctor card -->
+            <div class="card">
+                <div class="img-box">
+                    <img src="Doctor 7.avif" alt="grimesdentalgroup">
+                </div>
+                <div class="card-content">
+                    <h1 class="card-heading">Dr. Aaron Jay</h1>
+                    <p class="card-text">
+                        Dr. Aaron Jay is known for his expertise in both tooth removal and implant. He takes a detailed 
+                        approach, ensuring his patients fully understand their treatment options.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Doctor card -->
+            <div class="card">
+                <div class="img-box">
+                    <img src="Doctor 8.avif" alt="freepik">
+                </div>
+                <div class="card-content">
+                    <h1 class="card-heading">Dr. James Dean</h1>
+                    <p class="card-text">
+                        Dr. James Dean is a trusted dentist specializing in restorative procedures, including braces and crowns. His focus is on restoring 
+                        their smiles with the latest techniques.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Doctor card -->
+            <div class="card">
+                <div class="img-box">
+                    <img src="Doctor 8.webp" alt="pexels">
+                </div>
+                <div class="card-content">
+                    <h1 class="card-heading">Dr. John Michael</h1>
+                    <p class="card-text">
+                        Dr. John Michael is an expert in restorative and cosmetic dentistry, committed to improving his patients' smiles. He offers services like crowns, 
+                        implants, and root canals with a focus on precision and care.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

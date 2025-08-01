@@ -1,0 +1,494 @@
+/* ===================== FONT IMPORTS ===================== */
+/* Poppins for modern sans-serif UI elements */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+/* Noto Serif and Playfair Display for serif typography if needed */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/* ===================== GLOBAL RESET ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding doesn't add to element width */
+}
+
+/* Header */
+
+header {
+  font-family: "Poppins", sans-serif;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 160px;
+  transition: 0.5s ease;
+  background-color: #DEDBD6;
+}
+
+/* Navigation Container */
+
+header .navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Navigation Links */
+
+header .navigation .navigation-items a {
+  position: relative;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 500;
+  text-decoration: none;
+  right: 100px;
+  margin-right: 40px;
+  transition: 0.3s ease;
+}
+
+/* Underline animation on hover */
+
+header .navigation .navigation-items a:before {
+  content: '';
+  position: absolute;
+  background: #fff;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  transition: 0.55s ease;
+}
+
+header .navigation .navigation-items a:hover:before {
+  width: 100%;
+}
+
+/* Logo Container */
+
+header .logo {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  flex-grow: 1;
+}
+
+/* Logo Image */
+
+header .logo img {
+  height: 140px;
+  margin-right: 420px;
+}
+
+/* Login Icon Container */
+
+header .Login-in {
+  position: absolute;
+  right: 170px;
+  display: flex;
+  transition: 0.3s ease;
+  z-index: 999;
+}
+
+/* Login Icon */
+
+header .Login-in a {
+  color: #fff;
+  font-size: 3em;
+  transition: 0.5s ease;
+  text-decoration: none;
+  position: relative;
+  z-index: 9999;
+}
+
+/* Margin between multiple Login Icon */
+
+header .Login-in a:not(:first-child) {
+  margin-bottom: 20px;
+}
+
+/* Hover scale effect on Login Icon */
+
+header .Login-in a:hover {
+  transform: scale(1.3);
+}
+
+/* Responsive Media */
+
+
+@media (max-width: 1300px) {
+  header {
+    padding: 0px 80px;
+  }
+
+  header .logo img {
+    height: 140px;
+    margin-right: 130px;
+  }
+
+  header .navigation .navigation-items a {
+    font-size: 1.1em;
+    margin-right: 20px;
+    right: 40px;
+  }
+
+  header .Login-in {
+    right: 60px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  header .navigation.menu-active {
+    width: 300px;
+    right: 0;
+  }
+
+  header .navigation.menu-active .navigation-items {
+    padding: 30px;
+  }
+
+  header .navigation.menu-active .navigation-items a {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+  }
+}
+
+
+@media (max-width: 992px) {
+  header .logo img {
+    height: 140px;
+    margin-right: 0px;
+  }
+
+  header .navigation {
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    display: none;
+  }
+
+  header .Login-in {
+    transform: translateX(200%);
+    transition: transform 0.4s ease-in-out;
+    display: none;
+  }
+
+  header .navigation.menu-active {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 330px;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(25px);
+    background-color: rgba(255, 255, 255, 0.244);
+    border-radius: 10px;
+    z-index: 999;
+    animation: slideIn 0.4s forwards ease-in-out;
+  }
+
+  header .navigation.menu-active .navigation-items {
+    margin-left: 109px;
+    margin-top: 50px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  header .navigation.menu-active .navigation-items a {
+    color: #ffffff;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+  }
+
+  header .navigation .navigation-items a:before {
+    background: #ffffff;
+    height: 0.2em;
+  }
+
+  header .Login-in.menu-active {
+    display: flex;
+    position: fixed;
+    top: 120px;
+    right: 127px;
+    animation: slideInLogin 0.4s forwards ease-in-out;
+    z-index: 1000;
+  }
+
+  header .Login-in.menu-active a {
+    color: #ffffff;
+    font-size: 4em;
+  }
+
+  /* Slide-in animation for navigation */
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+
+  /* Slide-out animation for navigation */
+  @keyframes slideOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+  }
+
+  /* Slide-in animation for login icon */
+  @keyframes slideInLogin {
+    from { transform: translateX(500%); }
+    to { transform: translateX(0); }
+  }
+
+  /* Slide-out animation for login icon */
+  @keyframes slideOutLogin {
+    from { transform: translateX(0); }
+    to { transform: translateX(500%); }
+  }
+
+  /* Menu button styling  */
+  .menu-btn {
+    background: url(menu.png) no-repeat;
+    background-size: 30px;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1000;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Close icon styling when menu is active */
+  .menu-btn.menu-active {
+    background: url(close.png) no-repeat;
+    background-size: 25px;
+    background-position: center;
+    z-index: 1001;
+    transform: rotate(90deg);
+  }
+}
+
+/* ===================== BODY BACKGROUND ===================== */
+body {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; /* Keeps background fixed on scroll */
+  padding: 20px;
+  margin-top: 140px;
+  background-color: #dedbd6; /* Fallback background */
+}
+
+/* ===================== MAIN CONTAINER ===================== */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full vertical height */
+}
+
+/* ===================== BOX WRAPPER ===================== */
+.box {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding: 60px 20px 30px 20px;
+  height: 520px;
+  width: 350px;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.2); /* Glassmorphism effect */
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.box-staff {
+  position: absolute;
+  width: 85%;
+  left: 27px;
+  transition: 0.5s ease-in-out;
+}
+
+
+
+/* ===================== FORM HEADERS ===================== */
+.top-header {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.top-header h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ===================== FORM INPUTS ===================== */
+.input-group {
+  width: 100%;
+}
+
+.input-field {
+  margin: 12px 0;
+  position: relative;
+}
+
+/* Form input box styling */
+.input-box {
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+  color: #040404;
+  border: none;
+  border-radius: 10px;
+  padding: 7px 45px 0 20px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  outline: none;
+}
+
+/* Labels inside input boxes */
+.input-field label {
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  font-size: 15px;
+  transition: .3s ease-in-out;
+}
+
+/* Move label up when input is focused or filled */
+.input-box:focus ~ label,
+.input-box:valid ~ label {
+  top: 2px;
+  font-size: 10px;
+  color: #000000;
+  font-weight: 500;
+}
+
+/* ===================== CHECKBOX & SUBMIT BUTTON ===================== */
+.remember {
+  display: flex;
+  font-size: 13px;
+  margin: 12px 0 30px 0;
+  color: #000000;
+}
+
+.check {
+  margin-right: 8px;
+  width: 14px;
+}
+
+/* Submit (Login/Register) button styling */
+.input-submit {
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0px 4px 20px rgba(62, 9, 9, 0.144);
+  cursor: pointer;
+  transition: .4s;
+  margin-top: 30px;
+}
+
+/* Hover effect for submit button */
+.input-submit:hover {
+  background: #241a16;
+  color: #FFF;
+  box-shadow: 0px 4px 20px rgba(62, 9, 9, 0.32);
+}
+
+/* ===================== LINKS & SWITCH TOGGLE ===================== */
+.forgot {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 40px;
+}
+
+.forgot a {
+  text-decoration: none;
+  color: #000;
+}
+
+.forgot a:hover {
+  color: #ff0000;
+}
+
+
+
+/* Slider animation under switch links */
+#btn {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 145px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 2px 0px 12px rgba(0, 0, 0, 0.1);
+  transition: .5s ease-in-out;
+}
+
+/* ===================== PASSWORD VISIBILITY TOGGLE ===================== */
+.eye-area {
+  position: absolute;
+  top: 25px;
+  right: 38px;
+}
+
+.eye-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.eye-area i {
+  position: absolute;
+  color: #444444;
+  cursor: pointer;
+}
+
+/* Show only eye icon by default */
+#eye, #eye-2 {
+  opacity: 1;
+}
+
+/* Hide slash icon initially */
+#eye-slash, #eye-slash-2 {
+  opacity: 0;
+}
+
+/* ===================== RESPONSIVE STYLING ===================== */
+@media only screen and (max-width: 576px) {
+  .box {
+    margin: 0 5px; /* Add horizontal margin on small screens */
+  }
+
+  #btn {
+    width: 153px; /* Adjust toggle width on small screens */
+  }
+}
+
+/* Remove native password reveal in IE/Edge */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}

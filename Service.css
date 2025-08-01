@@ -1,0 +1,484 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header */
+header {
+  font-family: "Poppins", sans-serif;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 200px;
+  transition: 0.5s ease;
+  background-color: #DEDBD6;
+}
+
+/* Navigation container */
+header .navigation {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Navigation links */
+header .navigation .navigation-items a {
+  position: relative;
+  color: #fff;
+  font-size: 1.27em;
+  font-weight: 500;
+  text-decoration: none;
+  right: 70px;
+  margin-right: 40px;
+  transition: 0.3s ease;
+}
+
+/* Underline animation on hover */
+header .navigation .navigation-items a:before {
+  content: '';
+  position: absolute;
+  background: #fff;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  transition: 0.55s ease;
+}
+
+header .navigation .navigation-items a:hover:before {
+  width: 100%;
+}
+
+/* Logo container */
+header .logo {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  flex-grow: 1;
+}
+
+/* Logo image */
+header .logo img {
+  height: 190px;
+  margin-right: 355px;
+}
+
+/* Login icon container */
+header .Login-in {
+  position: absolute;
+  right: 170px;
+  display: flex;
+  transition: 0.3s ease;
+  z-index: 999;
+}
+
+/* Login icon */
+header .Login-in a {
+  color: #fff;
+  font-size: 3em;
+  transition: 0.5s ease;
+  text-decoration: none;
+  position: relative;
+  z-index: 9999;
+}
+
+/* Margin between multiple login icon */
+header .Login-in a:not(:first-child) {
+  margin-bottom: 20px;
+}
+
+/* Hover scale effect on login icon */
+header .Login-in a:hover {
+  transform: scale(1.3);
+}
+
+/* Body and layout styling */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  background-color: #DEDBD6;
+  margin-top: 280px;
+}
+
+/* Container for cards */
+.container {
+  width: 1000px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Individual service card */
+.container .card {
+  position: relative;
+  width: 30%;
+  margin-bottom: 140px;
+}
+
+/* Top part of the card */
+.container .card .face1 {
+  width: 100%;
+  height: 350px;
+  transition: 0.5s;
+}
+
+/* Bottom part of the card */
+.container .card .face2 {
+  width: 100%;
+  height: 80px;
+  transition: 0.5s;
+}
+
+/* Styling the face1 block */
+.container .card .face1 {
+  position: relative;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  transition: 0.5s ease-in-out;
+}
+
+/* Content inside the top card */
+.container .card .face1 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 10px 0 0;
+}
+
+/* Icon image inside card */
+.container .card .face1 .content img {
+  width: 100px;
+  height: 100px;
+}
+
+/* Title inside card */
+.container .card .face1 .content h3 {
+  margin: 22px 0 0;
+  padding: 0;
+  color: #000000;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+/* Description text */
+.container .card .face1 .content p {
+  font-size: 0.65rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+/* Styling the face2 block */
+.container .card .face2 {
+  position: absolute;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  transform: translateY(-90px);
+  z-index: 1;
+  border-bottom-left-radius: 20px;
+  border-end-end-radius: 20px;
+}
+
+/* Card hover effects */
+.container .card:hover .face2 {
+  transform: translateY(0px);
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+}
+
+.container .card:hover .face1 {
+  transform: translateY(0px);
+  z-index: 3;
+}
+
+/* Button styling */
+.btn {
+  font-family: "Poppins", sans-serif;
+  font-weight: 150px;
+  padding: 15px 20px;
+  position: relative;
+  color: #1c140d;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0);
+  overflow: hidden;
+  transition: 400ms;
+}
+
+.btn:hover {
+  padding-right: 40px;
+}
+
+/* Right arrow icon */
+.btn .ri-arrow-right-line {
+  position: absolute;
+  top: 34%;
+  margin-left: 10px;
+  color: #000000;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+
+/* Show arrow on hover */
+.btn:hover .ri-arrow-right-line {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Click effect overlay */
+.btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transition: 100ms ease-in-out transform;
+}
+
+.btn:active::before {
+  transform: scaleX(1);
+}
+
+/* Responsive media */
+@media (max-width: 1300px) {
+  header {
+    padding: 0px 80px;
+  }
+
+  header .logo img {
+    height: 140px;
+    margin-right: 130px;
+  }
+
+  header .navigation .navigation-items a {
+    font-size: 1.1em;
+    margin-right: 20px;
+    right: 40px;
+  }
+
+  header .Login-in {
+    right: 60px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  header .navigation.menu-active {
+    width: 300px;
+    right: 0;
+  }
+
+  header .navigation.menu-active .navigation-items {
+    padding: 30px;
+  }
+
+  header .navigation.menu-active .navigation-items a {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  header .logo img {
+    height: 140px;
+    margin-right: 0px;
+  }
+
+  header .navigation {
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    display: none;
+  }
+
+  header .Login-in {
+    transform: translateX(200%);
+    transition: transform 0.4s ease-in-out;
+    display: none;
+  }
+
+  header .navigation.menu-active {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 330px;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(25px);
+    background-color: rgba(255, 255, 255, 0.244);
+    border-radius: 10px;
+    z-index: 999;
+    animation: slideIn 0.4s forwards ease-in-out;
+  }
+
+  header .navigation.menu-active .navigation-items {
+    margin-left: 109px;
+    margin-top: 50px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  header .navigation.menu-active .navigation-items a {
+    color: #ffffff;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+  }
+
+  header .navigation .navigation-items a:before {
+    background: #ffffff;
+    height: 0.2em;
+  }
+
+  header .Login-in.menu-active {
+    display: flex;
+    position: fixed;
+    top: 120px;
+    right: 127px;
+    animation: slideInLogin 0.4s forwards ease-in-out;
+    z-index: 1000;
+  }
+
+  header .Login-in.menu-active a {
+    color: #ffffff;
+    font-size: 4em;
+  }
+
+  /* Slide-in animation for navigation */
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+
+  /* Slide-out animation for navigation */
+  @keyframes slideOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+  }
+
+  /* Slide-in animation for login icon */
+  @keyframes slideInLogin {
+    from { transform: translateX(500%); }
+    to { transform: translateX(0); }
+  }
+
+  /* Slide-out animation for login icon */
+  @keyframes slideOutLogin {
+    from { transform: translateX(0); }
+    to { transform: translateX(500%); }
+  }
+
+  /* Menu button styling */
+  .menu-btn {
+    background: url(menu.png) no-repeat;
+    background-size: 30px;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1000;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Close icon styling when menu is active */
+  .menu-btn.menu-active {
+    background: url(close.png) no-repeat;
+    background-size: 25px;
+    background-position: center;
+    z-index: 1001;
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 90%;
+    justify-content: center;
+  }
+
+  .container .card {
+    width: 45%;
+    margin: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    margin-top: 120px;
+    padding: 20px;
+    align-items: flex-start;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container .card {
+    width: 90%;
+    margin-bottom: 90px;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 12px 16px;
+  }
+  .btn .ri-arrow-right-line {
+    top: 34%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container .card .face1 .content h3 {
+    font-size: 1.1em;
+  }
+
+  .container .card .face1 .content p {
+    font-size: 0.6rem;
+    padding: 1rem;
+  }
+
+
+}

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta tags for character encoding and responsiveness -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>SmileCare Dental Clinic</title>
+    <!-- External CSS file for Home page -->
+    <link rel="stylesheet" href="Home.css">
+    <!-- Link to external CSS and icon libraries -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+    <script src="https://kit.fontawesome.com/1165876da6.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+    
+    <!-- Cookie Consent Modal Container -->
+    <div class="cookie-container">
+        <!-- Cookie Warning Box -->
+        <div class="cookie-warning">
+            <!-- Cookie Consent Title -->
+            <h3 class="cookie-title">We use cookies 🍪</h3>
+
+            <!-- Cookie Description Text with Links to Policies -->
+            <div class="cookie-text">
+                We use cookies to ensure you have the best browsing experience on our website. 
+                By using our site, you acknowledge that you have read and understood our 
+                <a href="Cookie Policy.html">Cookie Policy</a> & 
+                <a href="Privacy Policy.html">Privacy Policy</a>.
+            </div>
+
+            <!-- Buttons to Accept or Decline Cookies -->
+            <div class="cookie-btn-wrapper">
+                <button class="cookie-btn">Accept</button>
+                <button class="cookie-btn">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // When the window finishes loading, show the cookie container
+        window.onload = function() {
+            document.querySelector('.cookie-container').style.opacity = '1'; 
+            document.querySelector('.cookie-container').style.visibility = 'visible'; 
+        };
+
+        // Add an event listener to the first cookie button to hide the cookie container when clicked
+        document.querySelector('.cookie-btn').addEventListener('click', function() {
+            document.querySelector('.cookie-container').style.opacity = '0'; 
+            document.querySelector('.cookie-container').style.visibility = 'hidden'; 
+        });
+
+        // Add an event listener to the second cookie button (the second element in the list) to hide the cookie container when clicked
+        document.querySelectorAll('.cookie-btn')[1].addEventListener('click', function() {
+            document.querySelector('.cookie-container').style.opacity = '0'; 
+            document.querySelector('.cookie-container').style.visibility = 'hidden'; 
+        });
+    </script>
+
+    <!-- Header -->
+    <header>
+        <!-- Login icon linking to Login page -->
+        <div class="Login-in">
+            <a href="Login.html"><i class="ri-account-circle-line"></i></a>
+        </div>
+    
+        <!-- Navigation menu with links -->
+        <div class="navigation">
+            <div class="navigation-items">
+                <a href="Home.html">Home</a>
+                <a href="Services.html">Services</a>
+                <a href="Doctors.html">Doctors</a>
+                <a href="Register.html">Register</a>
+            </div>
+        </div>
+    
+        <!-- Logo -->
+        <div class="logo">
+            <img src="SmileCareLogo.png">
+        </div>
+    
+        <!-- Menu button (used for mobile toggle) -->
+        <div class="menu-btn"></div>
+    </header>
+    
+    <script>
+        // Select menu button, navigation menu, and login section from the DOM
+        const menuBtn = document.querySelector(".menu-btn");
+        const navigation = document.querySelector(".navigation");
+        const login = document.querySelector(".Login-in");
+    
+        // Track whether the menu is currently open or closed
+        let isMenuOpen = false;
+    
+        // Add a click event listener to toggle the menu
+        menuBtn.addEventListener("click", () => {
+            isMenuOpen = !isMenuOpen;
+    
+            if (isMenuOpen) {
+                // If menu is opening:
+                // Add active classes to make navigation and login sections visible
+                navigation.classList.add("menu-active");
+                login.classList.add("menu-active");
+    
+                // Apply slide-in animation to both elements
+                navigation.style.animation = "slideIn 0.4s forwards ease-in-out";
+                login.style.animation = "slideInLogin 0.4s forwards ease-in-out";
+            } else {
+                // If menu is closing:
+                // Apply slide-out animation
+                navigation.style.animation = "slideOut 0.4s forwards ease-in-out";
+                login.style.animation = "slideOutLogin 0.4s forwards ease-in-out";
+    
+                // Remove active classes after animation finishes (400ms delay)
+                setTimeout(() => {
+                    navigation.classList.remove("menu-active");
+                    login.classList.remove("menu-active");
+                }, 400);
+            }
+    
+            // Toggle the menu button's active state (can be used for icon change)
+            menuBtn.classList.toggle("menu-active");
+        });
+    </script>
+    
+
+    <!-- Home section with welcome message and booking button -->
+    <section class="Home">
+        <div class="Home-content">
+
+            <!-- Home Text and Button -->
+            <div class="Home-data">
+                <h2>Welcome to <br>SmileCare </h2>
+                <a href="Register.html">
+                    <button class="btn">
+                        Book an appointment <i class="ri-arrow-right-line"></i>
+                    </button>
+                </a>        
+            </div>
+
+            <!-- Image on the right side of the home section -->
+            <div class="Home-image">
+                <img src="front_page.jpg" alt="behance">
+            </div> 
+        </div>
+
+        <!-- ScrollReveal animations for home section elements -->
+        <script>
+            ScrollReveal({
+                reset: true,  // Repeats animation every time it enters the viewport
+                distance: '60px', // Movement distance of the element during animation
+                duration: 2500,  // Duration of the animation in milliseconds
+                delay: 400   // Delay before animation starts
+            });
+
+            // Animate text content from the left
+            ScrollReveal().reveal('.Home-data', { delay: 500, origin: 'left' });
+
+            // Animate image from the bottom
+            ScrollReveal().reveal('.Home-image', { delay: 600, origin: 'bottom' });
+        </script>
+    </section>
+
+    
+
+    <!-- About Us section with text and an image -->
+    <section class="About-us-1">
+        <div class="container-about-us">
+
+            <!-- Section heading -->
+            <h1 class="section-title">About us</h1>
+
+            <div class="content">
+                <!-- Informational text about the clinic -->
+                <div class="info-1">
+                    <p>
+                        Welcome to SmileCare! At SmileCare, we are committed to providing top-notch dental care in a warm,
+                        welcoming environment. Our team of experienced professionals is passionate about helping you 
+                        achieve a healthy, beautiful smile that lasts a lifetime. Whether you're here for a 
+                        routine check-up or a more advanced procedure, we ensure that your dental experience is as comfortable 
+                        and stress-free as possible.
+                    </p>
+                </div>
+
+                <!-- Image related to the clinic or atmosphere -->
+                <div class="image-1">
+                    <img src="staircase.jpg" alt="behance">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Us section (Part 2) focusing on the clinic's mission -->
+    <section class="About-us-2">
+        <div class="container-about-us">
+
+            <!-- Section heading -->
+            <h1 class="section-title">Our mission</h1>
+
+            <div class="content">
+
+                <!-- Image representing the mission or dental environment -->
+                <div class="image-2">
+                    <img src="room.png" alt="behance">
+                </div>
+
+                <!-- Mission statement text -->
+                <div class="info-2">
+                    <p>
+                        Our mission is to offer exceptional dental care that is both affordable and accessible.
+                        We strive to empower our patients with the knowledge and tools they need to make informed decisions about their oral health.
+                        At SmileCare, we believe that every smile matters, and we are dedicated to helping you maintain and enhance yours
+                        with personalized care and attention.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ScrollReveal animation configuration -->
+    <script>
+        ScrollReveal({
+            reset: true, // Repeats animations when elements re-enter the viewport
+            distance: '60px', // Distance elements move during animation
+            duration: 2500, // Length of animation (ms)
+            delay: 400 // Initial delay before any animation starts
+        });
+
+        // Animate section titles from the left
+        ScrollReveal().reveal('.section-title', { delay: 500, origin: 'left' });
+
+        // Animate About-us-1 images and info
+        ScrollReveal().reveal('.image-1', { delay: 600, origin: 'right' });
+        ScrollReveal().reveal('.info-1', { delay: 700, origin: 'bottom' });
+
+        // Animate About-us-2 image and info
+        ScrollReveal().reveal('.image-2', { delay: 600, origin: 'bottom' });
+        ScrollReveal().reveal('.info-2', { delay: 700, origin: 'right' });
+    </script>
+
+
+    <!-- Counter section displaying key stats about the clinic -->
+    <section class="Counter">
+        <div class="counters">
+            <div>
+
+                <!-- Counter 1: Staffs -->
+                <div class="counter">
+                    <i class="ri-group-line"></i>
+                    <h1><span data-count="100"></span>+</h1>
+                    <h3>Staffs</h3>
+                </div>
+
+                <!-- Counter 2: Awards -->
+                <div class="counter">
+                    <i class="ri-award-line"></i>
+                    <h1><span data-count="52"></span></h1>
+                    <h3>Awards</h3>
+                </div>
+
+                <!-- Counter 3: Satisfied Customers -->
+                <div class="counter">
+                    <i class="ri-user-smile-line"></i>
+                    <h1><span data-count="5120"></span>+</h1>
+                    <h3>Satisfied <br> Customers</h3>
+                </div>
+
+                <!-- Counter 4: Years of Experience -->
+                <div class="counter">
+                    <i class="ri-calendar-2-line"></i>
+                    <h1><span data-count="27"></span>+</h1>
+                    <h3>Year <br> Experience</h3>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Script to animate counters when they enter the viewport -->
+        <script>
+            // Select all span elements inside .counters (which hold the numbers)
+            const counters = document.querySelectorAll(".counters span");
+
+            // Function to animate counting from 0 to the target value
+            function updateCounter(counter, target) {
+                let count = 0;
+                const duration = 130000; // Total time for the counter to finish (in ms)
+                const increment = target / (duration / 1000); // Increment per second
+
+                // Recursive animation function
+                function animate() {
+                    if (count < target) {
+                        count += increment;
+                        counter.innerText = Math.floor(count); // Display whole numbers only
+                        requestAnimationFrame(animate); // Smooth animation
+                    } else {
+                        counter.innerText = target; // Final value
+                    }
+                }
+
+                animate();
+            }
+
+            // Optional: Function to reset all counters back to 0
+            function resetCounters() {
+                counters.forEach(counter => {
+                    counter.innerText = 0;
+                });
+            }
+
+            // IntersectionObserver triggers animation only when the counter is in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Element is visible: Start animation
+                        const target = parseInt(entry.target.dataset.count);
+                        updateCounter(entry.target, target);
+                    } else {
+                        // Element is not visible: Reset (optional for re-animation)
+                        entry.target.innerText = 0;
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is in view
+
+            // Attach observer to each counter
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+        </script>
+    </section>
+
+
+    <!-- Section for displaying customer reviews -->
+    <section class="Customer-Reveiws">
+        <div class="testimonials-section">
+    
+            <!-- Header for the testimonials section -->
+            <div class="section-header">
+                <h1>What Clients Say</h1>
+            </div>
+            <div class="owl-carousel owl-theme testimonials-container">
+    
+                <!-- Testimonial Card -->
+                <div class="item testimonial-card">
+                    <main class="test-card-body">
+                        <!-- Quote section for the testimonial -->
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Great Experience</h2>
+                        </div>
+                        <!-- Review -->
+                        <p> I've been going to SmileCare for a few months now, and overall, I've had a good experience. The staff is friendly and professional, and the office is always clean. 
+                            Dr. Ella Rose is great at explaining procedures and making sure I'm comfortable during my visits. I would still highly recommend this place for anyone looking for quality dental care!</p>
+                        <!-- Rating section with stars -->
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </main>
+                    <!-- Profile section of the reviewer -->
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="Tooth-icon.png">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Alex J</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Testimonial Card -->
+                <div class="item testimonial-card">
+                    <main class="test-card-body">
+                        <!-- Quote section -->
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Great Tooth Implant Experience at SmileCare! - Highly Recommended!</h2>
+                        </div>
+                        <!-- Review -->
+                        <p> I had a tooth implant procedure done at SmileCare, and I couldn't be happier with the results! Dr. John Michael and the entire team were so professional, 
+                            caring, and made the entire process smooth and stress-free. From the consultation to the final implant placement, Dr. John Michael explained everything in detail,
+                            which helped me feel completely at ease. The recovery was quick, 
+                            and the implant looks and feels completely natural. I'm thrilled with my new smile! Thank you, SmileCare, for providing such excellent care!</p>
+                        <!-- Rating section with stars -->
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </main>
+                    <!-- Profile section of the reviewer -->
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="Tooth-icon.png">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Sarah W</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Testimonial Card -->
+                <div class="item testimonial-card">
+                    <main class="test-card-body">
+                        <!-- Quote section -->
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Excellent Service</h2>
+                        </div>
+                        <!-- Review -->
+                        <p>I recently visited SmileCare for a root canal, and the whole process was smooth and pain-free. The staff was incredibly friendly, and they made me feel comfortable from start to finish. 
+                            I also had a whitening treatment done, and my smile has never looked better. Highly recommend their professional services.</p>
+                        <!-- Rating section with stars -->
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </main>
+                    <!-- Profile section of the reviewer -->
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="Tooth-icon.png">
+                        </div>
+                        <div class="profile-desc">
+                            <span>James P</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Testimonial Card -->
+                <div class="item testimonial-card">
+                    <main class="test-card-body">
+                        <!-- Quote section -->
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Outstanding Care and Results at SmileCare!</h2>
+                        </div>
+                        <!-- Review -->
+                        <p>I had braces done at SmileCare, and the results are amazing! The team was very professional and walked me through every step of the process. 
+                            I also had a crown placed on one of my teeth, and it feels just like my natural tooth. Great experience overall!</p>
+                        <!-- Rating section with stars -->
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </main>
+                    <!-- Profile section of the reviewer -->
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="Tooth-icon.png">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Mark R</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Testimonial Card -->
+                <div class="item testimonial-card">
+                    <main class="test-card-body">
+                        <!-- Quote section -->
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Best Dental Care Ever!</h2>
+                        </div>
+                        <!-- Review -->
+                        <p>I came to SmileCare for whitening and a root canal, and I was very impressed with the results. The staff is incredibly knowledgeable, and the clinic is state-of-the-art. 
+                            My smile is brighter than ever, and I felt completely comfortable during the treatment. Would definitely come back!</p>
+                        <!-- Rating section with stars -->
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </main>
+                    <!-- Profile section of the reviewer -->
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="Tooth-icon.png">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Emily L</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Testimonial card -->
+                <div class="item testimonial-card">
+                    <main class="test-card-body">
+                        <!-- Quote section -->
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Satisfied with My Treatment</h2>
+                        </div>
+                        <!-- Review -->
+                        <p>I got my wisdom teeth removed at SmileCare, and the procedure went well. 
+                            The team was very caring and made sure I felt at ease. </p>
+                        <!-- Rating section with stars -->
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </main>
+                    <!-- Profile section of the reviewer -->
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="Tooth-icon.png">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Kevin L</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Testimonial card -->
+                <div class="item testimonial-card">
+                    <main class="test-card-body">
+                        <!-- Quote section -->
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Wonderful Care and Results</h2>
+                        </div>
+                        <!-- Review -->
+                        <p>I had a filling and teeth whitening done at SmileCare, and The staff is incredibly friendly, and Dr. Laura Beth is fantastic at making sure 
+                            I'm informed and comfortable throughout the process. My teeth look and feel great.</p>
+                        <!-- Rating section with stars -->
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </main>
+                    <!-- Profile section of the reviewer -->
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="Tooth-icon.png">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Jessica M</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial card -->
+                <div class="item testimonial-card">
+                    <main class="test-card-body">
+                        <!-- Quote section -->
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Very Pleased with My Veneer</h2>
+                        </div>
+                        <!-- Review -->
+                        <p>I had a veneer placed at SmileCare, and I'm really happy with the result.
+                            The staff was professional and made sure I was comfortable throughout the procedure. My smile looks great!</p>
+                        <!-- Rating section with stars -->
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </main>
+                    <!-- Profile section of the reviewer -->
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="Tooth-icon.png">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Lisa P</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    
+
+        <!-- Include jQuery library (necessary for OwlCarousel to function) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <!-- Include OwlCarousel2 library (for carousel functionality) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script>
+        // Initialize the OwlCarousel for the testimonials container
+        var $carousel = $('.testimonials-container');
+        
+        // Set up OwlCarousel options
+        $carousel.owlCarousel({
+            loop: true, // Enables infinite looping of slides
+            autoplay: true, // Enables autoplay functionality
+            autoplayTimeout: 5000, // Time in milliseconds before autoplay slides to the next
+            margin: 10, // Margin between the carousel items
+            nav: true, // Enables navigation arrows
+            navText: [
+                "<i class='fa-solid fa-arrow-left'></i>", // Left arrow icon
+                "<i class='fa-solid fa-arrow-right'></i>" // Right arrow icon
+            ],
+            responsive: {
+                // Different settings based on screen width
+                0: {
+                    items: 1, // Show 1 item on smaller screens (mobile view)
+                    nav: false // Hide navigation arrows on mobile
+                },
+                600: {
+                    items: 1, // Show 1 item on screens above 600px
+                    nav: true // Enable navigation arrows on medium screens
+                },
+                768: {
+                    items: 2 // Show 2 items on larger screens
+                }
+            }
+        });
+
+        // Handle click events on the navigation arrows to restart autoplay after clicking
+        $carousel.on('click', '.owl-prev, .owl-next', function () {
+            $carousel.trigger('stop.owl.autoplay'); // Stop autoplay when an arrow is clicked
+            setTimeout(function () {
+                $carousel.trigger('play.owl.autoplay', [5000]); // Restart autoplay after 6.2 seconds
+            }, 6200); 
+        });
+    </script>
+
+    </section>
+
+    <!-- FOOTER SECTION STARTS -->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Footer section for contact information -->
+                <h3>Contact Us</h3>
+                <p>Company Name:</p>
+                <p>SmileCare Ltd</p>
+                <p> Email: </p>
+                <p>DentalCare@smilecare.com</p>
+                <p>Phone: </p>
+                <p>+197 361 9536</p>
+                <p>Address: </p>
+                <p>Healthway Avenu 56 street</p>
+                <p>Vat Number:</p>
+                <p>100123456700003</p>
+                <p>Legal Form:</p>
+                <p>Private Limited Company (Ltd)</p>
+            </div>
+            
+            <div class="footer-content">
+                <!-- Footer section for navigation menu -->
+                <h3>Menu</h3>
+                <ul class="list">
+                    <li class="Home-1"><a href="#">Home</a></li>
+                    <li class="Services"><a href="#">Services</a></li>
+                    <li class="Doctors"><a href="#">Doctors</a></li>
+                    <li class="Login-in"><a href="#">Login-in</a></li>
+                    <li class="Appointment"><a href="#">Book an appointment</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-content">
+                <!-- Footer section for social media links -->
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <div class="wrapper">
+                        <!-- Social media icons with tooltips -->
+                        <a href="https://www.facebook.com/" class="icon facebook">
+                            <div class="tooltip">Facebook</div>
+                            <span><i class="fab fa-facebook-f"></i></span>
+                        </a>
+                        <a href="https://www.instagram.com/" class="icon instagram">
+                            <div class="tooltip">Instagram</div>
+                            <span><i class="fab fa-instagram"></i></span>
+                        </a>
+                        <a href="https://www.linkedin.com/feed/" class="icon linkedin">
+                            <div class="tooltip">LinkedIn</div>
+                            <span><i class="fab fa-linkedin"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FOOTER SECTION ENDS -->
+
+    <!-- Include external JavaScript file -->
+    <script src="JavaScript.js"></script>
+
+
+</body>
+</html>

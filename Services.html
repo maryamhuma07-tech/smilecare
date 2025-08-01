@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta tags for character encoding and responsiveness -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>SmileCare Dental Clinic</title>
+    <!-- External CSS file for Services page -->
+    <link rel="stylesheet" href="Services.css">
+    <!-- Link to external CSS and icon libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <!-- Login icon linking to Login page -->
+        <div class="Login-in">
+            <a href="Login.html"><i class="ri-account-circle-line"></i></a>
+        </div>
+    
+        <!-- Navigation menu with links -->
+        <div class="navigation">
+            <div class="navigation-items">
+                <a href="Home.html">Home</a>
+                <a href="Services.html">Services</a>
+                <a href="Doctors.html">Doctors</a>
+                <a href="Register.html">Register</a>
+            </div>
+        </div>
+    
+        <!-- Logo -->
+        <div class="logo">
+            <img src="SmileCareLogo.png">
+        </div>
+    
+        <!-- Menu button (used for mobile toggle) -->
+        <div class="menu-btn"></div>
+    </header>
+    
+    <script>
+        // Select menu button, navigation menu, and login section from the DOM
+        const menuBtn = document.querySelector(".menu-btn");
+        const navigation = document.querySelector(".navigation");
+        const login = document.querySelector(".Login-in");
+    
+        // Track whether the menu is currently open or closed
+        let isMenuOpen = false;
+    
+        // Add a click event listener to toggle the menu
+        menuBtn.addEventListener("click", () => {
+            isMenuOpen = !isMenuOpen;
+    
+            if (isMenuOpen) {
+                // If menu is opening:
+                // Add active classes to make navigation and login sections visible
+                navigation.classList.add("menu-active");
+                login.classList.add("menu-active");
+    
+                // Apply slide-in animation to both elements
+                navigation.style.animation = "slideIn 0.4s forwards ease-in-out";
+                login.style.animation = "slideInLogin 0.4s forwards ease-in-out";
+            } else {
+                // If menu is closing:
+                // Apply slide-out animation
+                navigation.style.animation = "slideOut 0.4s forwards ease-in-out";
+                login.style.animation = "slideOutLogin 0.4s forwards ease-in-out";
+    
+                // Remove active classes after animation finishes (400ms delay)
+                setTimeout(() => {
+                    navigation.classList.remove("menu-active");
+                    login.classList.remove("menu-active");
+                }, 400);
+            }
+    
+            // Toggle the menu button's active state (can be used for icon change)
+            menuBtn.classList.toggle("menu-active");
+        });
+    </script>
+    
+
+    <!-- Services section -->
+    <section class="Services">
+        <div class="container">
+
+            <!-- Each "card" represents a dental service -->
+            <!-- Service 1: Tooth Implant -->
+            <div class="card">
+                <div class="face1">
+                    <div class="content">
+                        <img src="implant_5720946.png" alt="freepik">
+                        <h3>Tooth Implant</h3>
+                        <p>
+                            Tooth implants are a durable, natural-looking
+                            solution to replace missing teeth. At SmileCare, we provide custom implants that restore both function and aesthetics to your smile.
+                        </p>
+                    </div>
+                </div>
+                <div class="face2">
+                    <div class="content">
+                        <!-- Button to book an appointment -->
+                        <a href="Register.html"><button class="btn">Book an appointment <i class="ri-arrow-right-line"></i></button></a>    
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 2: Veneer -->
+            <div class="card">
+                <div class="face1">
+                    <div class="content">
+                        <img src="veneer_5721109.png" alt="freepik">
+                        <h3>Veneer</h3>
+                        <p>
+                            At SmileCare, veneers are custom-made shells 
+                            that cover damaged or discolored teeth, enhancing your smile's appearance.
+                        </p>
+                    </div>
+                </div>
+                <div class="face2">
+                    <div class="content">
+                        <a href="Register.html"><button class="btn">Book an appointment <i class="ri-arrow-right-line"></i></button></a>    
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 3: Filling -->
+            <div class="card">
+                <div class="face1">
+                    <div class="content">
+                        <img src="filling_5720877.png" alt="freepik">
+                        <h3>Filling</h3>
+                        <p>
+                            SmileCare offers dental fillings to restore cavities, 
+                            preventing further decay and ensuring the tooth functions properly.
+                        </p>
+                    </div>
+                </div>
+                <div class="face2">
+                    <div class="content">
+                        <a href="Register.html"><button class="btn">Book an appointment <i class="ri-arrow-right-line"></i></button></a>    
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 4: Crown -->
+            <div class="card">
+                <div class="face1">
+                    <div class="content">
+                        <img src="crown_5720853.png" alt="freepik">
+                        <h3>Crown</h3>
+                        <p>
+                            SmileCare provides crowns, tooth-shaped caps that 
+                            cover damaged or weakened teeth, restoring their strength and appearance.
+                        </p>
+                    </div>
+                </div>
+                <div class="face2">
+                    <div class="content">
+                        <a href="Register.html"><button class="btn">Book an appointment <i class="ri-arrow-right-line"></i></button></a>    
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 5: Scaling -->
+            <div class="card">
+                <div class="face1">
+                    <div class="content">
+                        <img src="scaling_5721070.png" alt="freepik">
+                        <h3>Scaling</h3>
+                        <p>
+                            SmileCare's scaling removes plaque and 
+                            tartar buildup from the teeth and gums, promoting healthy oral hygiene.
+                        </p>
+                    </div>
+                </div>
+                <div class="face2">
+                    <div class="content">
+                        <a href="Register.html"><button class="btn">Book an appointment <i class="ri-arrow-right-line"></i></button></a>    
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 6: Tooth Removal -->
+            <div class="card">
+                <div class="face1">
+                    <div class="content">
+                        <img src="removal_5720971.png" alt="freepik">
+                        <h3>Tooth Removal</h3>
+                        <p>
+                            SmileCare offers safe tooth and wisdom tooth removal, addressing severe damage, decay, 
+                            or alignment issues. Our expert team ensures a smooth and comfortable experience.
+                        </p>
+                    </div>
+                </div>
+                <div class="face2">
+                    <div class="content">
+                        <a href="Register.html"><button class="btn">Book an appointment <i class="ri-arrow-right-line"></i></button></a>    
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 7: Braces -->
+            <div class="card">
+                <div class="face1">
+                    <div class="content">
+                        <img src="braces_1471601.png" alt="freepik">
+                        <h3>Braces</h3>
+                        <p>
+                            At SmileCare, we offer braces to straighten and align your teeth, improving appearance for 
+                            a confident smile. Our personalized treatment ensures the best results for your oral health.
+                        </p>
+                    </div>
+                </div>
+                <div class="face2">
+                    <div class="content">
+                        <a href="Register.html"><button class="btn">Book an appointment <i class="ri-arrow-right-line"></i></button></a>    
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 8: Root Canal -->
+            <div class="card">
+                <div class="face1">
+                    <div class="content">
+                        <img src="root-canal_5720897.png" alt="freepik">
+                        <h3>Root Canal</h3>
+                        <p>
+                            SmileCare's root canal treatment addresses infections inside a tooth,
+                            preserving it and alleviating pain for better oral health.
+                        </p>
+                    </div>
+                </div>
+                <div class="face2">
+                    <div class="content">
+                        <a href="Register.html"><button class="btn">Book an appointment <i class="ri-arrow-right-line"></i></button></a>    
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 9: Teeth Whitening -->
+            <div class="card">
+                <div class="face1">
+                    <div class="content">
+                        <img src="tooth-whitening_18294312.png" alt="freepik">
+                        <h3>Teeth Whitening</h3>
+                        <p>
+                            SmileCare offers professional teeth whitening to 
+                            brighten your smile by removing stains and discoloration.
+                        </p>
+                    </div>
+                </div>
+                <div class="face2">
+                    <div class="content">
+                        <a href="Register.html"><button class="btn">Book an appointment <i class="ri-arrow-right-line"></i></button></a>    
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>
