@@ -157,7 +157,7 @@ header .Login-in a:hover {
 }
 
 /* Screen ≤ 900px */
-@media (max-width: 992px) {
+@media (max-width: 900px) {
   header .logo img {
     height: 140px;
     margin-right: 0px;
@@ -174,19 +174,23 @@ header .Login-in a:hover {
     transition: transform 0.4s ease-in-out;
     display: none;
   }
+  
+  header .Login-in a {
+    right: 10px;
+  }
 
   header .navigation.menu-active {
     display: flex;
     position: fixed;
     top: 0;
-    right: 0;
+    right: 10px;
     width: 330px;
     height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(25px);
-    background-color: rgba(255, 255, 255, 0.244);
+    background-color: rgba(158, 158, 158, 0.244);
     border-radius: 10px;
     z-index: 999;
     animation: slideIn 0.4s forwards ease-in-out;
@@ -227,31 +231,31 @@ header .Login-in a:hover {
     font-size: 4em;
   }
 
-  /* Slide-in Animation for Navigation */
+  /* Slide-in animation for navigation */
   @keyframes slideIn {
     from { transform: translateX(100%); }
     to { transform: translateX(0); }
   }
 
-  /* Slide-out Animation for Navigation */
+  /* Slide-out animation for navigation */
   @keyframes slideOut {
     from { transform: translateX(0); }
     to { transform: translateX(100%); }
   }
 
-  /* Slide-in Animation for Login Icon */
+  /* Slide-in animation for login icon */
   @keyframes slideInLogin {
     from { transform: translateX(500%); }
     to { transform: translateX(0); }
   }
 
-  /* Slide-out Animation for Login Icon */
+  /* Slide-out animation for login icon */
   @keyframes slideOutLogin {
     from { transform: translateX(0); }
     to { transform: translateX(500%); }
   }
 
-  /* Menu Button Styling */
+  /* Menu button styling  */
   .menu-btn {
     background: url(menu.png) no-repeat;
     background-size: 30px;
@@ -266,14 +270,20 @@ header .Login-in a:hover {
     transition: transform 0.3s ease;
   }
 
-  /* Close Icon Styling When Menu is Active */
+  /* Close icon styling when menu is active */
   .menu-btn.menu-active {
     background: url(close.png) no-repeat;
-    background-size: 25px;
+    background-size: 30px;
     background-position: center;
     z-index: 1001;
     transform: rotate(90deg);
   }
+}
+
+/* Prevent body from scrolling when the mobile menu is active */
+body.menu-active {
+  overflow: hidden;
+  height: 100vh;
 }
 
 
@@ -286,7 +296,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 17rem 9rem;
+    padding: 12rem 0rem;
 }
 
 /* Image Box inside card */
@@ -343,7 +353,7 @@ body {
 
 /* Card Description */
 .card-content p {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5rem;
   padding: 1.2rem;
@@ -363,7 +373,7 @@ body {
     }
 
     .card-content:hover {
-        height: 60%;
+        height: 65%;
     }
 
     .card-content h1 {
@@ -371,7 +381,7 @@ body {
     }
 
     .card-content p {
-        font-size: 0.7rem;
+        font-size: 1rem;
     }
 }
 
@@ -385,7 +395,7 @@ body {
     }
 
     .card-content p {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -400,7 +410,7 @@ body {
     }
 
     .card-content:hover {
-        height: 60%;
+        height: 50%;
     }
 
     .card-content h1 {
@@ -408,7 +418,7 @@ body {
     }
 
     .card-content p {
-        font-size: 0.6rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -419,11 +429,11 @@ body {
 
     .card-content {
         padding: 0.7rem;
-        height: 20%;
+        height: 14%;
     }
 
     .card-content:hover {
-        height: 100%;
+        height: 50%;
     }
 
     .card-content h1 {
@@ -431,6 +441,6 @@ body {
     }
 
     .card-content p {
-        font-size: 0.6rem;
+        font-size: 0.8rem;
     }
 }
