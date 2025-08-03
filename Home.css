@@ -259,7 +259,7 @@ header .Login-in a:hover {
 }
 
 
-@media (max-width: 992px) {
+@media (max-width: 900px) {
   header .logo img {
     height: 140px;
     margin-right: 0px;
@@ -276,19 +276,23 @@ header .Login-in a:hover {
     transition: transform 0.4s ease-in-out;
     display: none;
   }
+  
+  header .Login-in a {
+    right: 10px;
+  }
 
   header .navigation.menu-active {
     display: flex;
     position: fixed;
     top: 0;
-    right: 0;
+    right: 10px;
     width: 330px;
     height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(25px);
-    background-color: rgba(255, 255, 255, 0.244);
+    background-color: rgba(158, 158, 158, 0.244);
     border-radius: 10px;
     z-index: 999;
     animation: slideIn 0.4s forwards ease-in-out;
@@ -371,13 +375,18 @@ header .Login-in a:hover {
   /* Close icon styling when menu is active */
   .menu-btn.menu-active {
     background: url(close.png) no-repeat;
-    background-size: 25px;
+    background-size: 30px;
     background-position: center;
     z-index: 1001;
     transform: rotate(90deg);
   }
 }
 
+/* Prevent body from scrolling when the mobile menu is active */
+body.menu-active {
+  overflow: hidden;
+  height: 100vh;
+}
 
 /* Main Section */
 body {
@@ -597,6 +606,29 @@ body {
   
 }
 
+@media (max-width: 400px) {
+  .Home-content {
+    margin-top: 100px;
+  }
+
+  .Home .Home-data h2 {
+    font-size: 3.4em;
+    line-height: 57px;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
+
+  .Home .Home-image img {
+    width: 70%;
+  }
+  .btn .ri-arrow-right-line {
+    top: 36.5%;
+  }
+
+}
+
 
 
 /* About Us */
@@ -607,7 +639,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 90px;
+  padding: 80px 40px;
   color: #000000;
   background-color: #DEDBD6;
 }
@@ -751,38 +783,6 @@ body {
 }
 
 
-
-@media (max-width: 480px) {
-    .About-us-1 {
-        margin-top: 300px;
-    }
-    .About-us-2 {
-        padding: 80px 40px;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-    }
-    .info-2 {
-      margin-left: 0px;
-    }
-    
-    .info-1 {
-      margin-right: 0px;
-    }
-    .info-1,
-    .info-2 {
-        font-size: 0.9rem;
-        text-align: center;
-        padding: 0px 30px;
-    }
-
-    .image-1 img,
-    .image-2 img{
-        border-radius: 10px;
-    }
-
-}
 
 /*Counter*/
 
@@ -1076,6 +1076,12 @@ body {
   }
 }
 
+@media (max-width: 600px) {
+  .Customer-Reveiws {
+      padding-top: 320px;
+      padding-bottom: 630px;
+  }
+}
 
 /*Footer*/
 
@@ -1378,3 +1384,4 @@ body {
     transition: 0.5s ease-in-out;
   }
 }
+
