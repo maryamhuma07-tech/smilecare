@@ -321,7 +321,7 @@ body {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 900px) {
   header .logo img {
     height: 140px;
     margin-right: 0px;
@@ -338,19 +338,23 @@ body {
     transition: transform 0.4s ease-in-out;
     display: none;
   }
+  
+  header .Login-in a {
+    right: 10px;
+  }
 
   header .navigation.menu-active {
     display: flex;
     position: fixed;
     top: 0;
-    right: 0;
+    right: 10px;
     width: 330px;
     height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(25px);
-    background-color: rgba(255, 255, 255, 0.244);
+    background-color: rgba(158, 158, 158, 0.244);
     border-radius: 10px;
     z-index: 999;
     animation: slideIn 0.4s forwards ease-in-out;
@@ -415,7 +419,7 @@ body {
     to { transform: translateX(500%); }
   }
 
-  /* Menu button styling */
+  /* Menu button styling  */
   .menu-btn {
     background: url(menu.png) no-repeat;
     background-size: 30px;
@@ -433,21 +437,30 @@ body {
   /* Close icon styling when menu is active */
   .menu-btn.menu-active {
     background: url(close.png) no-repeat;
-    background-size: 25px;
+    background-size: 30px;
     background-position: center;
     z-index: 1001;
     transform: rotate(90deg);
   }
 }
 
+/* Prevent body from scrolling when the mobile menu is active */
+body.menu-active {
+  overflow: hidden;
+  height: 100vh;
+}
+
 @media (max-width: 1024px) {
+  body{ 
+    margin-top: 120px;
+  }
   .container {
-    width: 90%;
+    width: 100%;
     justify-content: center;
   }
 
   .container .card {
-    width: 45%;
+    width: 60%;
     margin: 70px;
   }
 }
@@ -465,7 +478,6 @@ body {
   }
 
   .container .card {
-    width: 90%;
     margin-bottom: 90px;
   }
 
@@ -487,6 +499,22 @@ body {
     font-size: 0.6rem;
     padding: 1rem;
   }
-
-
 }
+
+@media (max-width: 480px) {
+  .container .card .face1 .content h3 {
+    font-size: 1em;
+  }
+
+  .container .card .face1 .content p {
+    font-size: 0.6rem;
+    padding: 1rem;
+  }
+    .btn {
+    font-size: 1rem;
+  }
+  .btn .ri-arrow-right-line{
+    padding-left: 10px;
+  }
+}
+
