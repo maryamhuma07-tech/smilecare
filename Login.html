@@ -44,8 +44,8 @@
         <div class="menu-btn"></div>
     </header>
 
-    <script>
-        // Select menu button, navigation menu, and login section from the DOM
+<script>
+        // Select menu button, navigation menu, and login section from the dom
         const menuBtn = document.querySelector(".menu-btn");
         const navigation = document.querySelector(".navigation");
         const login = document.querySelector(".Login-in");
@@ -56,35 +56,41 @@
         // Add a click event listener to toggle the menu
         menuBtn.addEventListener("click", () => {
             isMenuOpen = !isMenuOpen;
-    
+
             if (isMenuOpen) {
                 // If menu is opening:
                 // Add active classes to make navigation and login sections visible
                 navigation.classList.add("menu-active");
                 login.classList.add("menu-active");
-    
+
                 // Apply slide-in animation to both elements
                 navigation.style.animation = "slideIn 0.4s forwards ease-in-out";
                 login.style.animation = "slideInLogin 0.4s forwards ease-in-out";
+
+                // Disable scrolling when menu is active
+                document.body.classList.add("menu-active");
             } else {
                 // If menu is closing:
                 // Apply slide-out animation
                 navigation.style.animation = "slideOut 0.4s forwards ease-in-out";
                 login.style.animation = "slideOutLogin 0.4s forwards ease-in-out";
-    
+
                 // Remove active classes after animation finishes (400ms delay)
                 setTimeout(() => {
                     navigation.classList.remove("menu-active");
                     login.classList.remove("menu-active");
+
+                    // Re-enable scrolling when menu is closed
+                    document.body.classList.remove("menu-active");
                 }, 400);
             }
-    
+
             // Toggle the menu button's active state (can be used for icon change)
             menuBtn.classList.toggle("menu-active");
         });
     </script>
 
-    <!-- Login/Register Section -->
+    <!-- Login Section -->
     <section class="Login">
         <div class="container">
             <div class="box">
@@ -218,3 +224,4 @@
     <script src="JavaScript.js"></script>
 </body>
 </html>
+
