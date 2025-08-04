@@ -175,15 +175,12 @@ header .Login-in a:hover {
     display: none;
   }
   
-  header .Login-in a {
-    right: 10px;
-  }
 
   header .navigation.menu-active {
     display: flex;
     position: fixed;
     top: 0;
-    right: 10px;
+    right: 0;
     width: 330px;
     height: 100vh;
     flex-direction: column;
