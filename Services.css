@@ -339,15 +339,11 @@ body {
     display: none;
   }
   
-  header .Login-in a {
-    right: 10px;
-  }
-
   header .navigation.menu-active {
     display: flex;
     position: fixed;
     top: 0;
-    right: 10px;
+    right: 0;
     width: 330px;
     height: 100vh;
     flex-direction: column;
@@ -447,12 +443,11 @@ body {
 /* Prevent body from scrolling when the mobile menu is active */
 body.menu-active {
   overflow: hidden;
-  height: 100vh;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1050px) {
   body{ 
-    margin-top: 120px;
+    margin-top: 180px;
   }
   .container {
     width: 100%;
@@ -460,27 +455,36 @@ body.menu-active {
   }
 
   .container .card {
-    width: 60%;
-    margin: 70px;
+    width: 34%;
+    margin: 60px 30px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 825px) {
   body {
     margin-top: 120px;
-    padding: 20px;
     align-items: flex-start;
   }
-
   .container {
     flex-direction: column;
     align-items: center;
   }
-
+  .container .card {
+    width: 60%;
+  }
   .container .card {
     margin-bottom: 90px;
   }
-
+  .container .card .face1 {
+    height: 400px;
+  }
+  .container .card .face1 .content h3 {
+    font-size: 1.3em;
+  }
+  .container .card .face1 .content p {
+    font-size: 0.8rem;
+    padding: 2rem;
+  }
   .btn {
     font-size: 1rem;
     padding: 12px 16px;
@@ -490,31 +494,44 @@ body.menu-active {
   }
 }
 
-@media (max-width: 480px) {
-  .container .card .face1 .content h3 {
-    font-size: 1.1em;
-  }
+@media (max-width: 550px) {
 
+  .container .card {
+    width: 80%;
+    margin: 55px 30px;
+  }
+  .container .card .face1 {
+    padding-top: 30px;
+    height: 410px;
+  }
+  .container .card .face1 .content h3 {
+    font-size: 1.5em;
+  }
   .container .card .face1 .content p {
-    font-size: 0.6rem;
-    padding: 1rem;
+    font-size: 0.9rem;
+    padding: 2.2rem;
   }
 }
 
 @media (max-width: 480px) {
+  .container .card {
+    width: 80%;
+  }
   .container .card .face1 .content h3 {
-    font-size: 1em;
+    font-size: 1.4em;
   }
-
+  .container .card .face1 {
+    height: 450px;
+    padding-top: 40px;
+  }
   .container .card .face1 .content p {
-    font-size: 0.6rem;
-    padding: 1rem;
+    font-size: 0.9rem;
+    padding: 2.2rem;
   }
-    .btn {
+  .btn {
     font-size: 1rem;
   }
   .btn .ri-arrow-right-line{
     padding-left: 10px;
   }
 }
-
