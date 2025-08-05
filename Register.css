@@ -261,6 +261,26 @@ input[type="datetime-local"].no-native-icon {
   -moz-appearance: textfield;
 }
 
+/* Remove default icon from input type="date" and datetime-local */
+input[type="date"],
+input[type="datetime-local"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  padding-right: 40px; /* Make space for your calendar icon */
+}
+
+/* Hide native calendar icon */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+  pointer-events: none;
+}
+
 /* Submit Button */
 .input-submit {
   margin-top: 110px;
@@ -558,6 +578,7 @@ body.menu-active {
     margin: 0 5px;
   }
 }
+
 
 
 
