@@ -424,6 +424,7 @@ body {
 
 /* Home heading styling */
 .Home .Home-data h2 {
+  font-family: "Poppins", sans-serif;
   font-size: 5.8em;
   font-weight: 400;
   letter-spacing: 2px;
@@ -603,7 +604,7 @@ body {
   
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
   .Home-content {
     margin-top: 100px;
   }
@@ -1503,4 +1504,5 @@ body {
     transition: 0.5s ease-in-out;
   }
 }
+
 
