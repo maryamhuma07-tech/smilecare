@@ -1,276 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- Meta tags for character encoding and responsiveness -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title -->
-    <title>SmileCare Dental Clinic</title>
-    <!-- External CSS file for Register page -->
-    <link rel="stylesheet" href="Register.css">
-    <!-- Link to external CSS and icon libraries -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmileCare Dental Clinic</title>
+  <link rel="stylesheet" href="Register.css" />
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
 </head>
+
 <body>
+  <!-- Header -->
+  <header>
+    <div class="Login-in">
+      <a href="Login.html"><i class="ri-account-circle-line"></i></a>
+    </div>
+    <div class="navigation">
+      <div class="navigation-items">
+        <a href="Home.html">Home</a>
+        <a href="Services.html">Services</a>
+        <a href="Doctors.html">Doctors</a>
+        <a href="Register.html">Register</a>
+      </div>
+    </div>
+    <div class="logo">
+      <img src="SmileCareLogo.png" alt="Logo" />
+    </div>
+    <div class="menu-btn"></div>
+  </header>
 
-    <!-- Header -->
-    <header>
-        <!-- Login icon linking to Login page -->
-        <div class="Login-in">
-            <a href="Login.html"><i class="ri-account-circle-line"></i></a>
-        </div>
-    
-        <!-- Navigation menu with links -->
-        <div class="navigation">
-            <div class="navigation-items">
-                <a href="Home.html">Home</a>
-                <a href="Services.html">Services</a>
-                <a href="Doctors.html">Doctors</a>
-                <a href="Register.html">Register</a>
+  <!-- Patient Registration Form -->
+  <section class="Patient-Register">
+    <div class="container">
+      <div class="box">
+        <form class="box-register" id="Register">
+          <div class="top-header">
+            <h3>Register</h3>
+          </div>
+          <div class="input-group">
+            <!-- Full Name -->
+            <div class="input-field">
+              <input type="text" class="input-box" id="RegUsername" required />
+              <label for="RegUsername">Full name</label>
             </div>
-        </div>
-    
-        <!-- Logo -->
-        <div class="logo">
-            <img src="SmileCareLogo.png">
-        </div>
-    
-        <!-- Menu button (used for mobile toggle) -->
-        <div class="menu-btn"></div>
-    </header>
-    <script>
-        // Select menu button, navigation menu, and login section from the dom
-        const menuBtn = document.querySelector(".menu-btn");
-        const navigation = document.querySelector(".navigation");
-        const login = document.querySelector(".Login-in");
-    
-        // Track whether the menu is currently open or closed
-        let isMenuOpen = false;
-    
-        // Add a click event listener to toggle the menu
-        menuBtn.addEventListener("click", () => {
-            isMenuOpen = !isMenuOpen;
 
-            if (isMenuOpen) {
-                // If menu is opening:
-                // Add active classes to make navigation and login sections visible
-                navigation.classList.add("menu-active");
-                login.classList.add("menu-active");
-
-                // Apply slide-in animation to both elements
-                navigation.style.animation = "slideIn 0.4s forwards ease-in-out";
-                login.style.animation = "slideInLogin 0.4s forwards ease-in-out";
-
-                // Disable scrolling when menu is active
-                document.body.classList.add("menu-active");
-            } else {
-                // If menu is closing:
-                // Apply slide-out animation
-                navigation.style.animation = "slideOut 0.4s forwards ease-in-out";
-                login.style.animation = "slideOutLogin 0.4s forwards ease-in-out";
-
-                // Remove active classes after animation finishes (400ms delay)
-                setTimeout(() => {
-                    navigation.classList.remove("menu-active");
-                    login.classList.remove("menu-active");
-
-                    // Re-enable scrolling when menu is closed
-                    document.body.classList.remove("menu-active");
-                }, 400);
-            }
-
-            // Toggle the menu button's active state (can be used for icon change)
-            menuBtn.classList.toggle("menu-active");
-        });
-    </script>
-
-        <!-- Patient Registration Form  -->
-    <section class="Patient-Register">
-        <div class="container">
-            <div class="box">
-
-                <!-- Registration form -->
-                <form class="box-register" id="Register">
-                    <div class="top-header">
-                        <h3>Register</h3>
-                    </div>
-
-                    <div class="input-group">
-                        <!-- Username input -->
-                        <div class="input-field">
-                            <input type="text" class="input-box" id="RegUsername" required>
-                            <label for="logUsername">Full name</label>
-                        </div>
-
-                        <!-- Date of birth input -->
-                        <div class="input-field icon-input">
-                          <input type="date" class="input-box" id="regDate-Birth" required />
-                          <label for="regDate-Birth">Date of Birth</label>
-                          <i class="ri-calendar-line calendar-icon" data-target="regDate-Birth"></i>
-                        </div>
-
-                        <!-- Gender dropdown -->
-                        <div class="dropdown">
-                            <div class="select">
-                                <span class="selected">Gender</span>
-                                <div class="caret"></div>
-                            </div>
-                            <ul class="menu">
-                                <li>Male</li>
-                                <li>Female</li>
-                            </ul>
-                        </div>
-                        <!-- Date and Time input -->
-                        <div class="input-field icon-input">
-                          <input type="datetime-local" class="input-box" id="regDate-Time" required />
-                          <label for="regDate-Time">Date and Time</label>
-                          <i class="ri-calendar-line calendar-icon" data-target="regDate-Time"></i>
-                        </div>
-
-                        <!-- Treatment dropdown -->
-                        <div class="dropdown">
-                            <div class="select">
-                                <span class="selected">Select Treatment</span>
-                                <div class="caret"></div> 
-                            </div>
-                            <ul class="menu">
-                                <!-- List of treatment options -->
-                                <li>Tooth Implant</li>
-                                <li>Veneer</li>
-                                <li>Filling</li>
-                                <li>Crown</li>
-                                <li>Scaling</li>
-                                <li>Tooth Removal</li>
-                                <li>Braces</li>
-                                <li>Root Canal</li>
-                                <li>Teeth Whitening</li>
-                            </ul>
-                        </div>
-
-                        <!-- Submit button that redirects to Login page -->
-                        <div class="input-field">
-                            <input type="submit" class="input-submit" value="Register" required>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- Date of Birth with icon -->
+            <div class="input-field icon-input">
+              <input type="date" class="input-box" id="regDate-Birth" required />
+              <label for="regDate-Birth">Date of Birth</label>
+              <i class="ri-calendar-line calendar-icon" data-target="regDate-Birth"></i>
             </div>
-        </div>
-    </section>
 
-    <!-- JavaScript for dropdown functionality and form submission -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Setup dropdown functionality
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-                const select = dropdown.querySelector('.select');
-                const selected = dropdown.querySelector('.selected');
-                const menu = dropdown.querySelector('.menu');
+            <!-- Gender Dropdown -->
+            <div class="dropdown">
+              <div class="select">
+                <span class="selected">Gender</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li>Male</li>
+                <li>Female</li>
+              </ul>
+            </div>
 
-                select.addEventListener('click', () => {
-                    // Close other open dropdown menus
-                    document.querySelectorAll('.menu.menu-open').forEach(openMenu => {
-                        if (openMenu !== menu) openMenu.classList.remove('menu-open');
-                    });
-                    menu.classList.toggle('menu-open');
-                });
+            <!-- Date & Time with icon -->
+            <div class="input-field icon-input">
+              <input type="datetime-local" class="input-box" id="regDate-Time" required />
+              <label for="regDate-Time">Date and Time</label>
+              <i class="ri-calendar-line calendar-icon" data-target="regDate-Time"></i>
+            </div>
 
-                menu.querySelectorAll('li').forEach(item => {
-                    item.addEventListener('click', () => {
-                        selected.innerText = item.innerText;
-                        menu.classList.remove('menu-open');
-                    });
-                });
-            });
-            // Set max date for Date of Birth to today
-            const dobInput = document.getElementById('regDate-Birth');
-            const today = new Date().toISOString().split('T')[0];
-            dobInput.max = today;
+            <!-- Treatment Dropdown -->
+            <div class="dropdown">
+              <div class="select">
+                <span class="selected">Select Treatment</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li>Tooth Implant</li>
+                <li>Veneer</li>
+                <li>Filling</li>
+                <li>Crown</li>
+                <li>Scaling</li>
+                <li>Tooth Removal</li>
+                <li>Braces</li>
+                <li>Root Canal</li>
+                <li>Teeth Whitening</li>
+              </ul>
+            </div>
 
-            // Close dropdown if clicked outside
-            document.addEventListener('click', (e) => {
-                document.querySelectorAll('.menu.menu-open').forEach(menu => {
-                    if (!menu.parentElement.contains(e.target)) {
-                        menu.classList.remove('menu-open');
-                    }
-                });
-            });
+            <!-- Submit -->
+            <div class="input-field">
+              <input type="submit" class="input-submit" value="Register" required />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 
-            // Calendar icon click triggers native picker
-              document.querySelectorAll('.calendar-icon').forEach(icon => {
-                icon.addEventListener('click', function () {
-                  const input = document.getElementById(this.dataset.target);
-                  if (input && typeof input.showPicker === 'function') {
-                    input.showPicker(); 
-                  } else {
-                    input.focus();
-                  }
-                });
-              });
+  <!-- JavaScript -->
+  <script>
 
-            // Handle form submit
-            const registerForm = document.querySelector('.box-register');
-            if (!registerForm) return;
+    document.querySelectorAll('.calendar-icon').forEach(icon => {
+    icon.addEventListener('click', function () {
+        const input = document.getElementById(this.dataset.target);
+        if (input && typeof input.showPicker === 'function') {
+        input.showPicker(); 
+        } else {
+        input.focus(); 
+        }
+    });
+    });
 
-            registerForm.addEventListener('submit', async function (e) {
-                e.preventDefault();
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      // Set max DOB to today
+      const dobInput = document.getElementById('regDate-Birth');
+      dobInput.max = new Date().toISOString().split('T')[0];
 
-                const name = document.getElementById('RegUsername').value.trim();
-                const dateOfBirth = document.getElementById('regDate-Birth').value.trim();
-                const dateTime = document.getElementById('regDate-Time').value.trim();
+      // Custom dropdown behavior
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        const select = dropdown.querySelector('.select');
+        const selected = dropdown.querySelector('.selected');
+        const menu = dropdown.querySelector('.menu');
 
-                const dropdowns = document.querySelectorAll('.dropdown .selected');
-                const gender = dropdowns[0].innerText !== 'Gender' ? dropdowns[0].innerText : '';
-                const treatment = dropdowns[1].innerText !== 'Select Treatment' ? dropdowns[1].innerText : '';
-
-                if (!gender || !treatment) {
-                    alert('Please select Gender and Treatment.');
-                    return;
-                }
-
-                const nameParts = name.split(' ');
-                const firstName = nameParts[0] || '';
-                const lastName = nameParts.slice(1).join(' ') || '';
-
-                const data = {
-                    firstName,
-                    lastName,
-                    dob: dateOfBirth,
-                    gender,
-                    appointmentTime: dateTime,
-                    treatment
-                };
-
-                try {
-                    const response = await fetch('/submit-appointment', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-
-                    const result = await response.json();
-
-                    if (response.ok && result.success) {
-                        alert('Booking successful!');
-                        registerForm.reset();
-                        dropdowns[0].innerText = 'Gender';
-                        dropdowns[1].innerText = 'Select Treatment';
-                    } else {
-                        alert('Booking failed: ' + (result.message || 'Unknown error'));
-                    }
-                } catch (err) {
-                    alert('Error connecting to server.');
-                    console.error(err);
-                }
-            });
+        select.addEventListener('click', () => {
+          document.querySelectorAll('.menu.menu-open').forEach(openMenu => {
+            if (openMenu !== menu) openMenu.classList.remove('menu-open');
+          });
+          menu.classList.toggle('menu-open');
         });
-    </script>
+
+        menu.querySelectorAll('li').forEach(item => {
+          item.addEventListener('click', () => {
+            selected.innerText = item.innerText;
+            menu.classList.remove('menu-open');
+          });
+        });
+      });
+
+      // Close dropdowns on outside click
+      document.addEventListener('click', e => {
+        document.querySelectorAll('.menu.menu-open').forEach(menu => {
+          if (!menu.parentElement.contains(e.target)) {
+            menu.classList.remove('menu-open');
+          }
+        });
+      });
+
+      // Calendar icon click triggers native picker
+      document.querySelectorAll('.calendar-icon').forEach(icon => {
+        icon.addEventListener('click', function () {
+          const input = document.getElementById(this.dataset.target);
+          if (input && typeof input.showPicker === 'function') {
+            input.showPicker(); // Open native calendar/time picker
+          } else {
+            input.focus(); // Fallback for unsupported browsers
+          }
+        });
+      });
+
+      // Form submission
+      const registerForm = document.querySelector('.box-register');
+      registerForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('RegUsername').value.trim();
+        const dateOfBirth = document.getElementById('regDate-Birth').value.trim();
+        const dateTime = document.getElementById('regDate-Time').value.trim();
+        const dropdowns = document.querySelectorAll('.dropdown .selected');
+        const gender = dropdowns[0].innerText !== 'Gender' ? dropdowns[0].innerText : '';
+        const treatment = dropdowns[1].innerText !== 'Select Treatment' ? dropdowns[1].innerText : '';
+
+        if (!gender || !treatment) {
+          alert('Please select Gender and Treatment.');
+          return;
+        }
+
+        const nameParts = name.split(' ');
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+
+        const data = {
+          firstName,
+          lastName,
+          dob: dateOfBirth,
+          gender,
+          appointmentTime: dateTime,
+          treatment
+        };
+
+        try {
+          const response = await fetch('/submit-appointment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+
+          if (response.ok && result.success) {
+            alert('Booking successful!');
+            registerForm.reset();
+            dropdowns[0].innerText = 'Gender';
+            dropdowns[1].innerText = 'Select Treatment';
+          } else {
+            alert('Booking failed: ' + (result.message || 'Unknown error'));
+          }
+        } catch (err) {
+          alert('Error connecting to server.');
+          console.error(err);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
