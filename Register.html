@@ -106,7 +106,7 @@
 
                         <!-- Date of birth input -->
                         <div class="input-field">
-                            <input type="date" class="input-box" id="regDate-Birth" required>
+                            <input type="date" class="input-box" id="regDate-Birth" max="" required>
                             <label for="regDate-Birth">Date of Birth</label>
                         </div>
 
@@ -182,6 +182,10 @@
                     });
                 });
             });
+            // Set max date for Date of Birth to today
+            const dobInput = document.getElementById('regDate-Birth');
+            const today = new Date().toISOString().split('T')[0];
+            dobInput.max = today;
 
             // Close dropdown if clicked outside
             document.addEventListener('click', (e) => {
@@ -251,6 +255,7 @@
     </script>
 </body>
 </html>
+
 
 
 
