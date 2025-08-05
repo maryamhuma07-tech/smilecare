@@ -105,9 +105,10 @@
                         </div>
 
                         <!-- Date of birth input -->
-                        <div class="input-field">
-                            <input type="date" class="input-box" id="regDate-Birth" max="" required>
-                            <label for="regDate-Birth">Date of Birth</label>
+                        <div class="input-field icon-input">
+                          <input type="date" class="input-box" id="regDate-Birth" required />
+                          <label for="regDate-Birth">Date of Birth</label>
+                          <i class="ri-calendar-line calendar-icon" data-target="regDate-Birth"></i>
                         </div>
 
                         <!-- Gender dropdown -->
@@ -122,9 +123,10 @@
                             </ul>
                         </div>
                         <!-- Date and Time input -->
-                        <div class="input-field">
-                            <input type="datetime-local" class="input-box" id="regDate-Time" required>
-                            <label for="regDate-Time">Date and Time</label>
+                        <div class="input-field icon-input">
+                          <input type="datetime-local" class="input-box" id="regDate-Time" required />
+                          <label for="regDate-Time">Date and Time</label>
+                          <i class="ri-calendar-line calendar-icon" data-target="regDate-Time"></i>
                         </div>
 
                         <!-- Treatment dropdown -->
@@ -196,6 +198,18 @@
                 });
             });
 
+            // Calendar icon click triggers native picker
+              document.querySelectorAll('.calendar-icon').forEach(icon => {
+                icon.addEventListener('click', function () {
+                  const input = document.getElementById(this.dataset.target);
+                  if (input && typeof input.showPicker === 'function') {
+                    input.showPicker(); 
+                  } else {
+                    input.focus();
+                  }
+                });
+              });
+
             // Handle form submit
             const registerForm = document.querySelector('.box-register');
             if (!registerForm) return;
@@ -255,6 +269,7 @@
     </script>
 </body>
 </html>
+
 
 
 
