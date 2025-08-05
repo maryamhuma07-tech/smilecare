@@ -1,11 +1,9 @@
-/* ===================== FONT IMPORTS ===================== */
 /* Poppins for modern sans-serif UI elements */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 
 /* Noto Serif and Playfair Display for serif typography if needed */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-/* ===================== GLOBAL RESET ===================== */
 * {
   margin: 0;
   padding: 0;
@@ -287,7 +285,7 @@ body.menu-active {
   height: 100vh;
 }
 
-/* ===================== BODY BACKGROUND ===================== */
+/* Body Background */
 body {
   background-position: center;
   background-repeat: no-repeat;
@@ -298,7 +296,7 @@ body {
   background-color: #dedbd6; /* Fallback background */
 }
 
-/* ===================== MAIN CONTAINER ===================== */
+/* Main Container */
 .container {
   display: flex;
   justify-content: center;
@@ -306,7 +304,7 @@ body {
   min-height: 100vh; /* Full vertical height */
 }
 
-/* ===================== BOX WRAPPER ===================== */
+/* Box Wrapper */
 .box {
   display: flex;
   flex-direction: row;
@@ -331,7 +329,7 @@ body {
 
 
 
-/* ===================== FORM HEADERS ===================== */
+/* Headers */
 .top-header {
   text-align: center;
   margin: 30px 0;
@@ -343,7 +341,7 @@ body {
   margin-bottom: 8px;
 }
 
-/* ===================== FORM INPUTS ===================== */
+/* Input Fields */
 .input-group {
   width: 100%;
 }
@@ -410,7 +408,7 @@ body {
   box-shadow: 0px 4px 20px rgba(62, 9, 9, 0.32);
 }
 
-/* ===================== PASSWORD VISIBILITY TOGGLE ===================== */
+/* Icon */
 .eye-area {
   position: absolute;
   top: 25px;
@@ -440,7 +438,8 @@ body {
   opacity: 0;
 }
 
-/* ===================== RESPONSIVE STYLING ===================== */
+/* Responsive Media */
+
 @media only screen and (max-width: 576px) {
   .box {
     margin: 0 5px; /* Add horizontal margin on small screens */
@@ -456,4 +455,5 @@ input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
   display: none;
 }
+
 
