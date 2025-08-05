@@ -213,41 +213,53 @@
       const registerForm = document.querySelector('.box-register');
       registerForm.addEventListener('submit', async function (e) {
         e.preventDefault();
-
+      
         const name = document.getElementById('RegUsername').value.trim();
         const dateOfBirth = document.getElementById('regDate-Birth').value.trim();
         const dateTime = document.getElementById('regDate-Time').value.trim();
         const dropdowns = document.querySelectorAll('.dropdown .selected');
         const gender = dropdowns[0].innerText !== 'Gender' ? dropdowns[0].innerText : '';
         const treatment = dropdowns[1].innerText !== 'Select Treatment' ? dropdowns[1].innerText : '';
-
+      
         if (!gender || !treatment) {
           alert('Please select Gender and Treatment.');
           return;
         }
-
+      
         const nameParts = name.split(' ');
         const firstName = nameParts[0] || '';
         const lastName = nameParts.slice(1).join(' ') || '';
-
-        const data = {
-          firstName,
-          lastName,
-          dob: dateOfBirth,
-          gender,
-          appointmentTime: dateTime,
-          treatment
-        };
-
+      
+        const appointmentTime = dateTime;
+      
+        // ✅ Check for existing appointment
         try {
+          const checkResponse = await fetch(`/check-availability?datetime=${encodeURIComponent(appointmentTime)}`);
+          const checkResult = await checkResponse.json();
+      
+          if (checkResult.taken) {
+            alert('This appointment slot is already taken. Please select another time.');
+            return;
+          }
+      
+          // If not taken, continue with booking
+          const data = {
+            firstName,
+            lastName,
+            dob: dateOfBirth,
+            gender,
+            appointmentTime,
+            treatment
+          };
+      
           const response = await fetch('/submit-appointment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
           });
-
+      
           const result = await response.json();
-
+      
           if (response.ok && result.success) {
             alert('Booking successful!');
             registerForm.reset();
@@ -256,13 +268,14 @@
           } else {
             alert('Booking failed: ' + (result.message || 'Unknown error'));
           }
+      
         } catch (err) {
           alert('Error connecting to server.');
           console.error(err);
         }
       });
-    });
   </script>
 </body>
 </html>
+
 
