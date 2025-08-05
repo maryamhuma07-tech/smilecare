@@ -627,8 +627,6 @@ body {
 
 }
 
-
-
 /* About Us */
 /* Styling for About Us Section 1 */
 .About-us-1,
@@ -704,8 +702,8 @@ body {
 
 /* Styling for the first image */
 .image-1 img {
-  width: auto;
-  height: auto;
+  width: 70%;
+  height: 80%;
   max-width: 100%;
   max-height: 100%;
   border-radius: 15px;
@@ -808,7 +806,6 @@ body {
   .content,
   .info-1,
   .info-2,
-  .image-1,
   .image-2 {
     width: 100%;
     max-width: 100%;
@@ -817,8 +814,12 @@ body {
     box-sizing: border-box;
   }
 
-  .image-1{
-    height: 100%;
+  .image-1 {
+    height: 60%;
+    width: 60%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   .content {
@@ -845,7 +846,69 @@ body {
     display: block;
   }
 }
-@media (max-width: 400px) {
+
+@media (max-width: 600px) {
+  html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip; 
+  }
+
+  .About-us-1,
+  .About-us-2 {
+    padding: 40px 45px;
+  }
+
+  .container-about-us,
+  .content,
+  .info-1,
+  .info-2,
+  .image-2 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .image-1 {
+    height: 60%;
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .content {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .image-1 img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .image-2 img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  } 
+}
+
+
+@media (max-width: 430px) {
   html, body {
     margin: 0;
     padding: 0;
@@ -901,8 +964,6 @@ body {
     display: block;
   }
 }
-
-
 
 /*Counter*/
 
@@ -1504,6 +1565,7 @@ body {
     transition: 0.5s ease-in-out;
   }
 }
+
 
 
 
