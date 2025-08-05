@@ -441,7 +441,7 @@ body {
 
 /* Main table container */
 main.table {
-  width: 92vw;
+  width: 80vw;
   height: 80vh;
   overflow: hidden;
 }
