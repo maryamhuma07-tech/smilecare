@@ -226,6 +226,7 @@ input[type="datetime-local"] {
   -moz-appearance: none;
   appearance: none;
   position: relative;
+  padding-right: 40px; 
 }
 
 /* Hide native calendar icon in WebKit browsers (Chrome, Safari) */
@@ -563,6 +564,7 @@ body.menu-active {
     margin: 0 5px;
   }
 }
+
 
 
 
