@@ -274,8 +274,21 @@
           console.error(err);
         }
       });
+      app.get('/check-availability', async (req, res) => {
+        const { datetime } = req.query;
+      
+        const existingAppointment = await db.collection('appointments').findOne({ appointmentTime: datetime });
+      
+        if (existingAppointment) {
+          res.json({ taken: true });
+        } else {
+          res.json({ taken: false });
+        }
+      });
+
   </script>
 </body>
 </html>
+
 
 
