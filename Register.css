@@ -227,20 +227,6 @@ input[type="datetime-local"] {
   appearance: none;
 }
 
-input[type="date"],
-input[type="datetime-local"] {
-  padding: 7px 15px 0 20px;  /* Same as .input-box */
-  height: 50px;              /* Match height */
-  font-size: 15px;           /* Match font */
-  border-radius: 10px;       /* Match style */
-  margin: 12px 0;            /* ✅ Uniform vertical spacing */
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(2px);
-  border: none;
-  outline: none;
-}
-
-
 /* Hide native calendar icon in WebKit browsers (Chrome, Safari) */
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
@@ -578,6 +564,7 @@ body.menu-active {
     margin: 0 5px;
   }
 }
+
 
 
 
