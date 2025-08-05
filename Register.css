@@ -114,8 +114,6 @@ header .Login-in a:hover {
   transform: scale(1.3);
 }
 
-
-
 body {
   background: url("images/99.jpg");
   background-position: center;
@@ -221,6 +219,49 @@ body {
   font-weight: 500;
 }
 
+/* Calendar Icon */
+
+.icon-input {
+  position: relative;
+}
+
+.calendar-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #555;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.icon-input input {
+  padding-right: 40px; 
+}
+
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  z-index: 5;
+}
+
+
+input[type="date"].no-native-icon::-webkit-calendar-picker-indicator,
+input[type="datetime-local"].no-native-icon::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
+
+
+input[type="date"].no-native-icon,
+input[type="datetime-local"].no-native-icon {
+  appearance: none;
+  -moz-appearance: textfield;
+}
 
 /* Submit Button */
 .input-submit {
@@ -519,6 +560,7 @@ body.menu-active {
     margin: 0 5px;
   }
 }
+
 
 
 
