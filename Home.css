@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-/* Reset margins, paddings, and box-sizing */
 * {
   margin: 0;
   padding: 0;
@@ -1565,6 +1564,7 @@ body {
     transition: 0.5s ease-in-out;
   }
 }
+
 
 
 
