@@ -233,7 +233,6 @@ body {
   font-size: 1.2rem;
   color: #555;
   cursor: pointer;
-  z-index: 10;
 }
 
 .icon-input input {
@@ -244,7 +243,6 @@ body {
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   opacity: 0;
-  z-index: 5;
 }
 
 
@@ -560,6 +558,7 @@ body.menu-active {
     margin: 0 5px;
   }
 }
+
 
 
 
