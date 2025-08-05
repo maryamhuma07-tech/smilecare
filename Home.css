@@ -424,7 +424,7 @@ body {
 
 /* Home heading styling */
 .Home .Home-data h2 {
-  font-family: "Poppins", sans-serif;
+  font-family: inherit;
   font-size: 5.8em;
   font-weight: 400;
   letter-spacing: 2px;
@@ -1504,5 +1504,6 @@ body {
     transition: 0.5s ease-in-out;
   }
 }
+
 
 
