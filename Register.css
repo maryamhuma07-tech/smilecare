@@ -251,6 +251,7 @@ input[type="datetime-local"]::-ms-expand {
 /* Custom calendar icon */
 .icon-input {
   position: relative;
+  margin: 12px 0;
 }
 
 .calendar-icon {
@@ -561,6 +562,7 @@ body.menu-active {
     margin: 0 5px;
   }
 }
+
 
 
 
