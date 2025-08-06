@@ -215,6 +215,12 @@
         e.preventDefault();
 
         const name = document.getElementById('RegUsername').value.trim();
+        // Full name validation (letters only, one space between names, no extra spaces)
+        const fullNameRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+        if (!fullNameRegex.test(name)) {
+          alert('Please enter a valid full name. Use letters only, no special characters or numbers, and no leading/trailing spaces.');
+          return;
+        }
         const dateOfBirth = document.getElementById('regDate-Birth').value.trim();
         const dateTime = document.getElementById('regDate-Time').value.trim();
         const dropdowns = document.querySelectorAll('.dropdown .selected');
@@ -265,3 +271,4 @@
   </script>
 </body>
 </html> 
+
