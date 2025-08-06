@@ -106,40 +106,6 @@ function showSection(sectionId) {
   if (sectionId === 'appointment_table') loadAppointmentTable();
 }
 
-function setupTableFeatures(tableId) {
-  const table = document.querySelector(#${tableId});
-  if (!table) return;
-  const rows = table.querySelectorAll('tbody tr');
-  const headings = table.querySelectorAll('thead th');
-  const originalOrder = Array.from(rows);
-  headings.forEach((head, i) => {
-    let sortAsc = true;
-    head.onclick = () => {
-      headings.forEach(h => h.classList.remove('active'));
-      head.classList.add('active');
-      table.querySelectorAll('tbody td').forEach(td => td.classList.remove('active'));
-      rows.forEach(row => row.querySelectorAll('td')[i].classList.add('active'));
-      sortAsc = head.classList.contains('asc') ? false : true;
-      head.classList.toggle('asc', sortAsc);
-      const sortedRows = [...rows].sort((a, b) => {
-        const aText = a.querySelectorAll('td')[i].textContent.toLowerCase();
-        const bText = b.querySelectorAll('td')[i].textContent.toLowerCase();
-        return sortAsc ? aText.localeCompare(bText) : bText.localeCompare(aText);
-      });
-      sortedRows.forEach(row => table.querySelector('tbody').appendChild(row));
-    };
-  });
-  document.addEventListener('click', function (event) {
-    const isClickInside = table.contains(event.target);
-    if (!isClickInside) {
-      table.querySelectorAll('thead th.active').forEach(th => th.classList.remove('active'));
-      table.querySelectorAll('tbody td.active').forEach(td => td.classList.remove('active'));
-      const tbody = table.querySelector('tbody');
-      originalOrder.forEach(row => tbody.appendChild(row));
-    }
-  });
-}
-
 // Load only ID, Patient Name, Date of Birth, Gender for patient table
 async function loadPatientTable() {
   try {
