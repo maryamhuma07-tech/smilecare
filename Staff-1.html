@@ -99,6 +99,13 @@
     sidebar.classList.toggle("active");
   };
 
+  function showSection(sectionId) {
+    document.querySelectorAll('.content_section').forEach(sec => sec.style.display = 'none');
+    document.getElementById(sectionId).style.display = '';
+    if (sectionId === 'patient') loadPatientTable();
+    if (sectionId === 'appointment_table') loadAppointmentTable();
+  }
+
   // Load only ID, Patient Name, Date of Birth, Gender for patient table
   async function loadPatientTable() {
     try {
