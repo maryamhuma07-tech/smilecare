@@ -225,7 +225,7 @@ input[type="datetime-local"] {
   -moz-appearance: none;
   appearance: none;
   margin: 0px;
-  padding-left: 95px;
+  padding-left: 20px;
   font-family: inherit;
   font-size: 15px;
 }
@@ -236,6 +236,14 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   opacity: 0;
   display: none;
   -webkit-appearance: none;
+}
+
+input[type="date"]::-moz-placeholder,
+input[type="datetime-local"]::-moz-placeholder {
+  position: relative;
+  padding-left: 15px;
+  font-family: inherit;
+  font-size: 12px;
 }
 
 /* Hide in Firefox */
@@ -564,6 +572,7 @@ body.menu-active {
     margin: 0 5px;
   }
 }
+
 
 
 
