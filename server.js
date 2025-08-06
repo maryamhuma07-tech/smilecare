@@ -33,9 +33,7 @@ db.run(`
 app.use(cors());
 app.use(bodyParser.json());
 
-
-
-// Submit new appointment (with duplicate time prevention)
+// ✅ Submit new appointment (with 30-minute gap check)
 app.post('/submit-appointment', (req, res) => {
   const { firstName, lastName, dob, gender, appointmentTime, treatment } = req.body;
 
@@ -43,20 +41,30 @@ app.post('/submit-appointment', (req, res) => {
     return res.status(400).json({ success: false, message: 'Missing required fields' });
   }
 
-  // Check if appointment time is already taken
-  const checkSql = `SELECT COUNT(*) AS count FROM appointments WHERE appointmentTime = ?`;
-  db.get(checkSql, [appointmentTime], (err, row) => {
+  // Check for appointments within ±30 minutes of selected time
+  const selectedTime = new Date(appointmentTime);
+  const bufferStart = new Date(selectedTime.getTime() - 30 * 60000).toISOString();
+  const bufferEnd = new Date(selectedTime.getTime() + 30 * 60000).toISOString();
+
+  const conflictQuery = `
+    SELECT * FROM appointments
+    WHERE appointmentTime BETWEEN ? AND ?
+  `;
+
+  db.all(conflictQuery, [bufferStart, bufferEnd], (err, rows) => {
     if (err) {
-      console.error('❌ Error checking for duplicates:', err.message);
+      console.error('❌ Conflict check error:', err.message);
       return res.status(500).json({ success: false, message: 'Database error during time check' });
     }
 
-    if (row.count > 0) {
-      // ❌ Time already booked
-      return res.status(409).json({ success: false, message: 'This time slot is already booked' });
+    if (rows.length > 0) {
+      return res.status(409).json({
+        success: false,
+        message: 'This time slot is not available. Appointments must be at least 30 minutes apart.'
+      });
     }
 
-    // Proceed to insert appointment
+    // Insert appointment
     const insertSql = `
       INSERT INTO appointments (firstName, lastName, dob, gender, appointmentTime, treatment)
       VALUES (?, ?, ?, ?, ?, ?)
@@ -74,7 +82,7 @@ app.post('/submit-appointment', (req, res) => {
   });
 });
 
-// Get all bookings 
+// ✅ Get all bookings (sorted by oldest, formatted ID)
 app.get('/bookings', (req, res) => {
   const query = 'SELECT * FROM appointments ORDER BY id ASC';
 
@@ -85,7 +93,7 @@ app.get('/bookings', (req, res) => {
     }
 
     const formatted = rows.map((r, i) => ({
-      id: String(i + 1).padStart(2, '0'),  // Sort & format ID as 01, 02...
+      id: String(i + 1).padStart(2, '0'),  // ID format: 01, 02...
       name: `${r.firstName} ${r.lastName}`,
       dateOfBirth: r.dob,
       gender: r.gender,
@@ -97,27 +105,22 @@ app.get('/bookings', (req, res) => {
   });
 });
 
-
+// ✅ Serve HTML pages
 app.get('/', (req, res) => {
-  console.log('Root route accessed - serving Home.html');
   res.sendFile(path.join(__dirname, 'Home.html'));
 });
 
 app.get('/login', (req, res) => {
-  console.log('Login route accessed');
   res.sendFile(path.join(__dirname, 'Login.html'));
 });
 
 app.get('/Staff-1.html', (req, res) => {
-  console.log('Staff dashboard accessed');
   res.sendFile(path.join(__dirname, 'Staff-1.html'));
 });
 
-// Login endpoint (basic mock auth)
+// ✅ Basic login handler (mock auth)
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  console.log('Login attempt:', { username, password });
-
   if (username && password) {
     res.json({ success: true, message: 'Login successful' });
   } else {
@@ -125,9 +128,10 @@ app.post('/login', (req, res) => {
   }
 });
 
+// Static file support (HTML, CSS, JS)
 app.use(express.static(__dirname));
 
-// Start server
+// ✅ Start the server
 app.listen(port, () => {
   console.log(`🚀 Server running at http://localhost:${port}`);
   console.log('📋 Available routes:');
@@ -138,4 +142,3 @@ app.listen(port, () => {
   console.log('  GET /login - Login page');
   console.log('  GET /Staff-1.html - Staff dashboard');
 });
-
