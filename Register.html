@@ -1,203 +1,267 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmileCare Dashboard</title>
-  <link rel="stylesheet" href="Staff-1.css">
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmileCare Dental Clinic</title>
+  <link rel="stylesheet" href="Register.css" />
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
 </head>
+
 <body>
-
-<!-- Sidebar -->
-<div class="sidebar">
-  <div class="logo_content">
-    <div class="logo">
-      <img src="SmileCareLogo Dashboard.png" alt="SmileCare Logo">
-      <div class="logo_name">SmileCare</div>
+  <!-- Header -->
+  <header>
+    <div class="Login-in">
+      <a href="Login.html"><i class="ri-account-circle-line"></i></a>
     </div>
-    <i class="ri-menu-line" id="btn"></i>
-  </div>
-
-  <ul class="nav_list">
-    <li><a href="#" onclick="showSection('dashboard')"><i class="ri-dashboard-line"></i><span class="links_name">Dashboard</span></a></li>
-    <li><a href="#" onclick="showSection('patient')"><i class="ri-user-line"></i><span class="links_name">Patient</span></a></li>
-    <li><a href="#" onclick="showSection('appointment_table')"><i class="ri-calendar-2-line"></i><span class="links_name">Appointment</span></a></li>
-    <li class="logout"><a href="Home.html"><i class="ri-logout-box-line"></i><span class="links_name">Logout</span></a></li>
-  </ul>
-</div>
-
-<!-- Main Content -->
-<div class="home_content">
-
-  <!-- Dashboard Section -->
-  <div id="dashboard" class="content_section">
-    <div class="text-container">
-      <div class="home_text">
-        <div class="text-1">Welcome Username!</div>
-        <div class="text-2">Providing exceptional care and making smiles brighter every day</div>
+    <div class="navigation">
+      <div class="navigation-items">
+        <a href="Home.html">Home</a>
+        <a href="Services.html">Services</a>
+        <a href="Doctors.html">Doctors</a>
+        <a href="Register.html">Register</a>
       </div>
     </div>
-  </div>
+    <div class="logo">
+      <img src="SmileCareLogo.png" alt="Logo" />
+    </div>
+    <div class="menu-btn"></div>
+  </header>
 
-<!-- Patient Section -->
-<div id="patient" class="table content_section" style="display:none;">
-  <main class="table" id="patient_table">
-    <section class="table__header">
-      <h1>Patient Details</h1>
-    </section>
-    <section class="table__body">
-      <table>
-        <thead>
-          <tr>
-            <th> ID </th>
-            <th> Patient Name </th>
-            <th> Date of Birth </th>
-            <th> Gender </th>
-          </tr>
-        </thead>
-        <tbody id="patient-table-body">
-          <!-- Booking Rows will be inserted here by JavaScript -->
-        </tbody>
-      </table>
-    </section>
-  </main>
-</div>
+  <script>
+    // Select menu button, navigation menu, and login section from the dom
+    const menuBtn = document.querySelector(".menu-btn");
+    const navigation = document.querySelector(".navigation");
+    const login = document.querySelector(".Login-in");
 
-<!-- Appointment Section -->
-<div id="appointment_table" class="table content_section" style="display:none;">
-  <main class="table">
-    <section class="table__header">
-      <h1>Appointment</h1>
-    </section>
-    <section class="table__body">
-      <table>
-        <thead>
-          <tr>
-            <th> ID </th>
-            <th> Patient Name </th>
-            <th> Date of Birth </th>
-            <th> Gender </th>
-            <th> Day & Time </th>
-            <th> Treatment </th>
-          </tr>
-        </thead>
-        <tbody id="appointment-table-body">
-          <!-- Appointment Rows will be inserted here by JavaScript -->
-        </tbody>
-      </table>
-    </section>
-  </main>
-</div>
+    // Track whether the menu is currently open or closed
+    let isMenuOpen = false;
 
-<script>
-  const btn = document.querySelector("#btn");
-  const sidebar = document.querySelector(".sidebar");
+    // Add a click event listener to toggle the menu
+    menuBtn.addEventListener("click", () => {
+        isMenuOpen = !isMenuOpen;
 
-  btn.onclick = function () {
-    sidebar.classList.toggle("active");
-  };
+        if (isMenuOpen) {
+            // If menu is opening:
+            // Add active classes to make navigation and login sections visible
+            navigation.classList.add("menu-active");
+            login.classList.add("menu-active");
 
-  function showSection(sectionId) {
-    document.querySelectorAll('.content_section').forEach(sec => sec.style.display = 'none');
-    document.getElementById(sectionId).style.display = '';
-    if (sectionId === 'patient') loadPatientTable();
-    if (sectionId === 'appointment_table') loadAppointmentTable();
-  }
+            // Apply slide-in animation to both elements
+            navigation.style.animation = "slideIn 0.4s forwards ease-in-out";
+            login.style.animation = "slideInLogin 0.4s forwards ease-in-out";
 
-  function setupTableFeatures(tableId) {
-    const table = document.querySelector(`#${tableId}`);
-    if (!table) return;
-    const rows = table.querySelectorAll('tbody tr');
-    const headings = table.querySelectorAll('thead th');
-    const originalOrder = Array.from(rows);
-    headings.forEach((head, i) => {
-      let sortAsc = true;
-      head.onclick = () => {
-        headings.forEach(h => h.classList.remove('active'));
-        head.classList.add('active');
-        table.querySelectorAll('tbody td').forEach(td => td.classList.remove('active'));
-        rows.forEach(row => row.querySelectorAll('td')[i].classList.add('active'));
-        sortAsc = head.classList.contains('asc') ? false : true;
-        head.classList.toggle('asc', sortAsc);
-        const sortedRows = [...rows].sort((a, b) => {
-          const aText = a.querySelectorAll('td')[i].textContent.toLowerCase();
-          const bText = b.querySelectorAll('td')[i].textContent.toLowerCase();
-          return sortAsc ? aText.localeCompare(bText) : bText.localeCompare(aText);
-        });
-        sortedRows.forEach(row => table.querySelector('tbody').appendChild(row));
-      };
+            // Disable scrolling when menu is active
+            document.body.classList.add("menu-active");
+        } else {
+            // If menu is closing:
+            // Apply slide-out animation
+            navigation.style.animation = "slideOut 0.4s forwards ease-in-out";
+            login.style.animation = "slideOutLogin 0.4s forwards ease-in-out";
+
+            // Remove active classes after animation finishes (400ms delay)
+            setTimeout(() => {
+                navigation.classList.remove("menu-active");
+                login.classList.remove("menu-active");
+
+                // Re-enable scrolling when menu is closed
+                document.body.classList.remove("menu-active");
+            }, 400);
+        }
+
+        // Toggle the menu button's active state (can be used for icon change)
+        menuBtn.classList.toggle("menu-active");
     });
-    document.addEventListener('click', function (event) {
-      const isClickInside = table.contains(event.target);
-      if (!isClickInside) {
-        table.querySelectorAll('thead th.active').forEach(th => th.classList.remove('active'));
-        table.querySelectorAll('tbody td.active').forEach(td => td.classList.remove('active'));
-        const tbody = table.querySelector('tbody');
-        originalOrder.forEach(row => tbody.appendChild(row));
-      }
-    });
-  }
-
-  // Load only ID, Patient Name, Date of Birth, Gender for patient table
-  async function loadPatientTable() {
-    try {
-      const response = await fetch('/bookings', { credentials: 'include' });
-      let bookings = await response.json();
-
-      // Sort bookings by ID ascending
-      bookings.sort((a, b) => Number(a.id) - Number(b.id));
-
-      const tbody = document.getElementById('patient-table-body');
-      tbody.innerHTML = '';
-      bookings.forEach(booking => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${booking.id}</td>
-          <td>${booking.name}</td>
-          <td>${booking.dateOfBirth}</td>
-          <td>${booking.gender}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    } catch (err) {
-      alert('Failed to load patient data.');
-    }
-  }
-
-
-  // Load all columns for appointment table
-  async function loadAppointmentTable() {
-    try {
-      const response = await fetch('/bookings', { credentials: 'include' });
-      let bookings = await response.json();
-
-      // Sort bookings by ID ascending
-      bookings.sort((a, b) => Number(a.id) - Number(b.id));
-
-      const tbody = document.getElementById('appointment-table-body');
-      tbody.innerHTML = '';
-      bookings.forEach(booking => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${booking.id}</td>
-          <td>${booking.name}</td>
-          <td>${booking.dateOfBirth}</td>
-          <td>${booking.gender}</td>
-          <td>${booking.dateTime}</td>
-          <td>${booking.treatment}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    } catch (err) {
-      alert('Failed to load appointment data.');
-    }
-  }
-
-  // Optionally, load dashboard by default
-  showSection('dashboard');
 </script>
+  
+  <!-- Patient Registration Form -->
+  <section class="Patient-Register">
+    <div class="container">
+      <div class="box">
+        <form class="box-register" id="Register">
+          <div class="top-header">
+            <h3>Register</h3>
+          </div>
+          <div class="input-group">
+            <!-- Full Name -->
+            <div class="input-field">
+              <input type="text" class="input-box" id="RegUsername" required />
+              <label for="RegUsername">Full name</label>
+            </div>
 
+            <!-- Date of Birth with icon -->
+            <div class="input-field icon-input">
+              <input type="date" class="input-box" id="regDate-Birth" required />
+              <label for="regDate-Birth">Date of Birth</label>
+              <i class="ri-calendar-line calendar-icon" data-target="regDate-Birth"></i>
+            </div>
+
+            <!-- Gender Dropdown -->
+            <div class="dropdown">
+              <div class="select">
+                <span class="selected">Gender</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li>Male</li>
+                <li>Female</li>
+              </ul>
+            </div>
+
+            <!-- Date & Time with icon -->
+            <div class="input-field icon-input">
+              <input type="datetime-local" class="input-box" id="regDate-Time" required />
+              <label for="regDate-Time">Date and Time</label>
+              <i class="ri-calendar-line calendar-icon" data-target="regDate-Time"></i>
+            </div>
+
+            <!-- Treatment Dropdown -->
+            <div class="dropdown">
+              <div class="select">
+                <span class="selected">Select Treatment</span>
+                <div class="caret"></div>
+              </div>
+              <ul class="menu">
+                <li>Tooth Implant</li>
+                <li>Veneer</li>
+                <li>Filling</li>
+                <li>Crown</li>
+                <li>Scaling</li>
+                <li>Tooth Removal</li>
+                <li>Braces</li>
+                <li>Root Canal</li>
+                <li>Teeth Whitening</li>
+              </ul>
+            </div>
+
+            <!-- Submit -->
+            <div class="input-field">
+              <input type="submit" class="input-submit" value="Register" required />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+
+    document.querySelectorAll('.calendar-icon').forEach(icon => {
+    icon.addEventListener('click', function () {
+        const input = document.getElementById(this.dataset.target);
+        if (input && typeof input.showPicker === 'function') {
+        input.showPicker(); 
+        } else {
+        input.focus(); 
+        }
+    });
+    });
+
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      // Set max DOB to today
+      const dobInput = document.getElementById('regDate-Birth');
+      dobInput.max = new Date().toISOString().split('T')[0];
+
+      // Custom dropdown behavior
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        const select = dropdown.querySelector('.select');
+        const selected = dropdown.querySelector('.selected');
+        const menu = dropdown.querySelector('.menu');
+
+        select.addEventListener('click', () => {
+          document.querySelectorAll('.menu.menu-open').forEach(openMenu => {
+            if (openMenu !== menu) openMenu.classList.remove('menu-open');
+          });
+          menu.classList.toggle('menu-open');
+        });
+
+        menu.querySelectorAll('li').forEach(item => {
+          item.addEventListener('click', () => {
+            selected.innerText = item.innerText;
+            menu.classList.remove('menu-open');
+          });
+        });
+      });
+
+      // Close dropdowns on outside click
+      document.addEventListener('click', e => {
+        document.querySelectorAll('.menu.menu-open').forEach(menu => {
+          if (!menu.parentElement.contains(e.target)) {
+            menu.classList.remove('menu-open');
+          }
+        });
+      });
+
+      // Calendar icon click triggers native picker
+      document.querySelectorAll('.calendar-icon').forEach(icon => {
+        icon.addEventListener('click', function () {
+          const input = document.getElementById(this.dataset.target);
+          if (input && typeof input.showPicker === 'function') {
+            input.showPicker(); // Open native calendar/time picker
+          } else {
+            input.focus(); // Fallback for unsupported browsers
+          }
+        });
+      });
+
+      // Form submission
+      const registerForm = document.querySelector('.box-register');
+      registerForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('RegUsername').value.trim();
+        const dateOfBirth = document.getElementById('regDate-Birth').value.trim();
+        const dateTime = document.getElementById('regDate-Time').value.trim();
+        const dropdowns = document.querySelectorAll('.dropdown .selected');
+        const gender = dropdowns[0].innerText !== 'Gender' ? dropdowns[0].innerText : '';
+        const treatment = dropdowns[1].innerText !== 'Select Treatment' ? dropdowns[1].innerText : '';
+
+        if (!gender || !treatment) {
+          alert('Please select Gender and Treatment.');
+          return;
+        }
+
+        const nameParts = name.split(' ');
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+
+        const data = {
+          firstName,
+          lastName,
+          dob: dateOfBirth,
+          gender,
+          appointmentTime: dateTime,
+          treatment
+        };
+
+        try {
+          const response = await fetch('/submit-appointment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+
+          if (response.ok && result.success) {
+            alert('Booking successful!');
+            registerForm.reset();
+            dropdowns[0].innerText = 'Gender';
+            dropdowns[1].innerText = 'Select Treatment';
+          } else {
+            alert('Booking failed: ' + (result.message || 'Unknown error'));
+          }
+        } catch (err) {
+          alert('Error connecting to server.');
+          console.error(err);
+        }
+      });
+    });
+  </script>
 </body>
 </html> 
