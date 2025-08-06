@@ -112,24 +112,31 @@ function showSection(sectionId) {
 async function loadPatientTable() {
   try {
     const response = await fetch('/bookings', { credentials: 'include' });
-    const bookings = await response.json();
+    let bookings = await response.json();
+
+    // Sort by ID
+    bookings.sort((a, b) => a.id - b.id);
+
     const tbody = document.getElementById('patient-table-body');
     tbody.innerHTML = '';
-    bookings.forEach(booking => {
+
+    bookings.forEach((booking) => {
+      const formattedId = String(booking.id).padStart(2, '0');
+
       const tr = document.createElement('tr');
-      tr.innerHTML = 
-        tr.innerHTML = `
-          <td>${booking.id}</td>
-          <td>${booking.name}</td>
-          <td>${booking.dateOfBirth}</td>
-          <td>${booking.gender}</td>
-        `;
+      tr.innerHTML = `
+        <td>${formattedId}</td>
+        <td>${booking.name}</td>
+        <td>${booking.dateOfBirth}</td>
+        <td>${booking.gender}</td>
+      `;
       tbody.appendChild(tr);
     });
   } catch (err) {
     alert('Failed to load patient data.');
   }
 }
+
 
 // Load all columns for appointment table
 async function loadAppointmentTable() {
