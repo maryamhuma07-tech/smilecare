@@ -56,7 +56,7 @@ app.post('/submit-appointment', (req, res) => {
       return res.status(409).json({ success: false, message: 'This time slot is already booked' });
     }
 
-    // ✅ Proceed to insert appointment
+    // Proceed to insert appointment
     const insertSql = `
       INSERT INTO appointments (firstName, lastName, dob, gender, appointmentTime, treatment)
       VALUES (?, ?, ?, ?, ?, ?)
@@ -74,9 +74,9 @@ app.post('/submit-appointment', (req, res) => {
   });
 });
 
-// Get all bookings (sorted by time DESC)
+// Get all bookings 
 app.get('/bookings', (req, res) => {
-  const query = 'SELECT * FROM appointments ORDER BY appointmentTime DESC';
+  const query = 'SELECT * FROM appointments ORDER BY id ASC';
 
   db.all(query, [], (err, rows) => {
     if (err) {
@@ -138,3 +138,4 @@ app.listen(port, () => {
   console.log('  GET /login - Login page');
   console.log('  GET /Staff-1.html - Staff dashboard');
 });
+
