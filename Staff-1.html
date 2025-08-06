@@ -127,7 +127,7 @@
 // Fetch and display bookings in the patient table
 async function loadBookings() {
   try {
-    const response = await fetch('http://localhost:3001/bookings', { credentials: 'include' });
+    const response = await fetch('/bookings', { credentials: 'include' });
     const bookings = await response.json();
     const tbody = document.getElementById('patient-table-body');
     tbody.innerHTML = '';
