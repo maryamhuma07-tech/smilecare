@@ -92,6 +92,20 @@
 </div>
 
 <script>
+// Sort table by ID (first column)
+function sortTableById(tableId) {
+  const tableBody = document.querySelector(`#${tableId} tbody`);
+  const rows = Array.from(tableBody.querySelectorAll('tr'));
+
+  const sortedRows = rows.sort((a, b) => {
+    const aId = Number(a.children[0].textContent.trim());
+    const bId = Number(b.children[0].textContent.trim());
+    return aId - bId; // ascending order
+  });
+
+  tableBody.innerHTML = '';
+  sortedRows.forEach(row => tableBody.appendChild(row));
+}
 const btn = document.querySelector("#btn");
 const sidebar = document.querySelector(".sidebar");
 
