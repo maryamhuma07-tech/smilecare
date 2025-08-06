@@ -109,7 +109,7 @@ function showSection(sectionId) {
 // Load only ID, Patient Name, Date of Birth, Gender for patient table
 async function loadPatientTable() {
   try {
-    const response = await fetch('http://localhost:3002/bookings', { credentials: 'include' });
+    const response = await fetch('/bookings', { credentials: 'include' });
     const bookings = await response.json();
     const tbody = document.getElementById('patient-table-body');
     tbody.innerHTML = '';
@@ -131,7 +131,7 @@ async function loadPatientTable() {
 // Load all columns for appointment table
 async function loadAppointmentTable() {
   try {
-    const response = await fetch('http://localhost:3002/bookings', { credentials: 'include' });
+    const response = await fetch('/bookings', { credentials: 'include' });
     const bookings = await response.json();
     const tbody = document.getElementById('appointment-table-body');
     tbody.innerHTML = '';
