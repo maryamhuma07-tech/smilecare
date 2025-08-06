@@ -43,19 +43,13 @@
 
 <!-- Patient Section -->
 <div id="patient" class="table content_section" style="display:none;">
-  <!-- Patient Table -->
   <main class="table" id="patient_table">
-    
-    <!-- Patient Table Header -->
     <section class="table__header">
       <h1>Patient Details</h1>
     </section>
-    
-    <!-- Patient Table Body -->
     <section class="table__body">
       <table>
         <thead>
-          <!-- Patient Table Heading -->
           <tr>
             <th> ID </th>
             <th> Patient Name </th>
@@ -68,66 +62,88 @@
         </tbody>
       </table>
     </section>
-
   </main>
 </div>
 
 <!-- Appointment Section -->
-<main id="appointment_table" class="table content_section" style="display:none;">
-  
-  <!-- Appointment Table Header -->
-  <section class="table__header">
-    <h1>Appointment</h1>
-  </section>
-  
-  <!-- Appointment Table Body -->
-  <section class="table__body">
-    <table>
-      <thead>
-        <!-- Appointment Table Heading -->
-        <tr>
-          <th> ID </th>
-          <th> Patient </th>
-          <th> Day & Time </th>
-          <th> Treatment </th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Appointment Rows -->
-        <tr>
-          <td>001</td>
-          <td>John Smith</td>
-          <td>2023-08-15 10:00</td>
-          <td>Cleaning</td>
-        </tr>
-        <tr>
-          <td>002</td>
-          <td>Emily Johnson</td>
-          <td>2023-08-16 14:00</td>
-          <td>Whitening</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+<div id="appointment_table" class="table content_section" style="display:none;">
+  <main class="table">
+    <section class="table__header">
+      <h1>Appointment</h1>
+    </section>
+    <section class="table__body">
+      <table>
+        <thead>
+          <tr>
+            <th> ID </th>
+            <th> Patient Name </th>
+            <th> Date of Birth </th>
+            <th> Gender </th>
+            <th> Day & Time </th>
+            <th> Treatment </th>
+          </tr>
+        </thead>
+        <tbody id="appointment-table-body">
+          <!-- Appointment Rows will be inserted here by JavaScript -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
 
-</main>
-
-
-<!-- JavaScript -->
 <script>
-  const btn = document.querySelector("#btn");
-  const sidebar = document.querySelector(".sidebar");
+const btn = document.querySelector("#btn");
+const sidebar = document.querySelector(".sidebar");
 
-  // Toggle sidebar visibility
-  btn.onclick = function () {
-    sidebar.classList.toggle("active");
-  };
+btn.onclick = function () {
+  sidebar.classList.toggle("active");
+};
 
+function showSection(sectionId) {
+  document.querySelectorAll('.content_section').forEach(sec => sec.style.display = 'none');
+  document.getElementById(sectionId).style.display = '';
+  if (sectionId === 'patient') loadPatientTable();
+  if (sectionId === 'appointment_table') loadAppointmentTable();
+}
 
-// Fetch and display bookings in the patient table
-async function loadBookings() {
+function setupTableFeatures(tableId) {
+  const table = document.querySelector(#${tableId});
+  if (!table) return;
+  const rows = table.querySelectorAll('tbody tr');
+  const headings = table.querySelectorAll('thead th');
+  const originalOrder = Array.from(rows);
+  headings.forEach((head, i) => {
+    let sortAsc = true;
+    head.onclick = () => {
+      headings.forEach(h => h.classList.remove('active'));
+      head.classList.add('active');
+      table.querySelectorAll('tbody td').forEach(td => td.classList.remove('active'));
+      rows.forEach(row => row.querySelectorAll('td')[i].classList.add('active'));
+      sortAsc = head.classList.contains('asc') ? false : true;
+      head.classList.toggle('asc', sortAsc);
+      const sortedRows = [...rows].sort((a, b) => {
+        const aText = a.querySelectorAll('td')[i].textContent.toLowerCase();
+        const bText = b.querySelectorAll('td')[i].textContent.toLowerCase();
+        return sortAsc ? aText.localeCompare(bText) : bText.localeCompare(aText);
+      });
+      sortedRows.forEach(row => table.querySelector('tbody').appendChild(row));
+    };
+  });
+  document.addEventListener('click', function (event) {
+    const isClickInside = table.contains(event.target);
+    if (!isClickInside) {
+      table.querySelectorAll('thead th.active').forEach(th => th.classList.remove('active'));
+      table.querySelectorAll('tbody td.active').forEach(td => td.classList.remove('active'));
+      const tbody = table.querySelector('tbody');
+      originalOrder.forEach(row => tbody.appendChild(row));
+    }
+  });
+}
+
+// Load only ID, Patient Name, Date of Birth, Gender for patient table
+async function loadPatientTable() {
   try {
-    const response = await fetch('/bookings', { credentials: 'include' });
+    const response = await fetch('http://localhost:3002/bookings', { credentials: 'include' });
     const bookings = await response.json();
     const tbody = document.getElementById('patient-table-body');
     tbody.innerHTML = '';
@@ -138,20 +154,38 @@ async function loadBookings() {
         <td>${booking.name}</td>
         <td>${booking.dateOfBirth}</td>
         <td>${booking.gender}</td>
-      
       `;
       tbody.appendChild(tr);
     });
   } catch (err) {
-    alert('Failed to load bookings.');
+    alert('Failed to load patient data.');
   }
 }
-// Load bookings when the patient section is shown
-function showSection(sectionId) {
-  document.querySelectorAll('.content_section').forEach(sec => sec.style.display = 'none');
-  document.getElementById(sectionId).style.display = '';
-  if (sectionId === 'patient') loadBookings();
+
+// Load all columns for appointment table
+async function loadAppointmentTable() {
+  try {
+    const response = await fetch('http://localhost:3002/bookings', { credentials: 'include' });
+    const bookings = await response.json();
+    const tbody = document.getElementById('appointment-table-body');
+    tbody.innerHTML = '';
+    bookings.forEach(booking => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${booking.id}</td>
+        <td>${booking.name}</td>
+        <td>${booking.dateOfBirth}</td>
+        <td>${booking.gender}</td>
+        <td>${booking.dateTime}</td>
+        <td>${booking.treatment}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  } catch (err) {
+    alert('Failed to load appointment data.');
+  }
 }
+
 // Optionally, load dashboard by default
 showSection('dashboard');
 </script>
