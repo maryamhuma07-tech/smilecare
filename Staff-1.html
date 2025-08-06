@@ -114,7 +114,7 @@ async function loadPatientTable() {
     const response = await fetch('/bookings', { credentials: 'include' });
     let bookings = await response.json();
 
-    // Sort by ID
+    // Sorted by ID
     bookings.sort((a, b) => a.id - b.id);
 
     const tbody = document.getElementById('patient-table-body');
