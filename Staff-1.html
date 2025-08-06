@@ -112,6 +112,7 @@ async function loadPatientTable() {
   try {
     const response = await fetch('/bookings', { credentials: 'include' });
     const bookings = await response.json();
+    bookings.sort((a, b) => a.id - b.id);
     const tbody = document.getElementById('patient-table-body');
     tbody.innerHTML = '';
     bookings.forEach(booking => {
@@ -134,6 +135,7 @@ async function loadAppointmentTable() {
   try {
     const response = await fetch('/bookings', { credentials: 'include' });
     const bookings = await response.json();
+    bookings.sort((a, b) => a.id - b.id);
     const tbody = document.getElementById('appointment-table-body');
     tbody.innerHTML = '';
     bookings.forEach(booking => {
