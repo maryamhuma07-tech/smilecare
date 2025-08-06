@@ -225,7 +225,7 @@ input[type="datetime-local"] {
   -moz-appearance: none;
   appearance: none;
   margin: 0px;
-  padding-left: 19px;
+  padding-left: 10px;
   font-family: inherit;
   font-size: 12px;
 }
@@ -564,6 +564,7 @@ body.menu-active {
     margin: 0 5px;
   }
 }
+
 
 
 
