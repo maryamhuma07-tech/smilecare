@@ -165,7 +165,13 @@
     document.addEventListener('DOMContentLoaded', function () {
       // Set max DOB to today
       const dobInput = document.getElementById('regDate-Birth');
-      dobInput.max = new Date().toISOString().split('T')[0];
+      const today = new Date();
+      dobInput.max = today.toISOString().split('T')[0];
+      
+      // Set min to 100 years ago
+      const hundredYearsAgo = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+      dobInput.min = hundredYearsAgo.toISOString().split('T')[0];
+
 
       // Custom dropdown behavior
       document.querySelectorAll('.dropdown').forEach(dropdown => {
@@ -271,4 +277,5 @@
   </script>
 </body>
 </html> 
+
 
