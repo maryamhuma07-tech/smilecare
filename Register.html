@@ -150,27 +150,27 @@
   <!-- JavaScript -->
   <script>
 
+    // Trigger date picker when calendar icon is clicked
     document.querySelectorAll('.calendar-icon').forEach(icon => {
-    icon.addEventListener('click', function () {
+      icon.addEventListener('click', function () {
         const input = document.getElementById(this.dataset.target);
         if (input && typeof input.showPicker === 'function') {
-        input.showPicker(); 
+          input.showPicker();
         } else {
-        input.focus(); 
+          input.focus();
         }
+      });
     });
-    });
-
     
+    // Set min and max date for DOB input on page load
     document.addEventListener('DOMContentLoaded', function () {
-      // Set max DOB to today
       const dobInput = document.getElementById('regDate-Birth');
-
       const today = new Date();
-      dobInput.max = today.toLocaleDateString('en-CA');  // ensures local time is respected
-      
+      dobInput.max = today.toLocaleDateString('en-CA');
+    
       const hundredYearsAgo = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
       dobInput.min = hundredYearsAgo.toLocaleDateString('en-CA');
+    });
 
 
 
@@ -278,6 +278,7 @@
   </script>
 </body>
 </html> 
+
 
 
 
