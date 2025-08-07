@@ -174,110 +174,111 @@
 
 
 
-      // Custom dropdown behavior
-      document.querySelectorAll('.dropdown').forEach(dropdown => {
-        const select = dropdown.querySelector('.select');
-        const selected = dropdown.querySelector('.selected');
-        const menu = dropdown.querySelector('.menu');
+    // Custom dropdown behavior
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
+      const select = dropdown.querySelector('.select');
+      const selected = dropdown.querySelector('.selected');
+      const menu = dropdown.querySelector('.menu');
 
-        select.addEventListener('click', () => {
-          document.querySelectorAll('.menu.menu-open').forEach(openMenu => {
-            if (openMenu !== menu) openMenu.classList.remove('menu-open');
-          });
-          menu.classList.toggle('menu-open');
+      select.addEventListener('click', () => {
+        document.querySelectorAll('.menu.menu-open').forEach(openMenu => {
+          if (openMenu !== menu) openMenu.classList.remove('menu-open');
         });
-
-        menu.querySelectorAll('li').forEach(item => {
-          item.addEventListener('click', () => {
-            selected.innerText = item.innerText;
-            menu.classList.remove('menu-open');
-          });
-        });
+        menu.classList.toggle('menu-open');
       });
 
-      // Close dropdowns on outside click
-      document.addEventListener('click', e => {
-        document.querySelectorAll('.menu.menu-open').forEach(menu => {
-          if (!menu.parentElement.contains(e.target)) {
-            menu.classList.remove('menu-open');
-          }
+      menu.querySelectorAll('li').forEach(item => {
+        item.addEventListener('click', () => {
+          selected.innerText = item.innerText;
+          menu.classList.remove('menu-open');
         });
       });
+    });
 
-      // Calendar icon click triggers native picker
-      document.querySelectorAll('.calendar-icon').forEach(icon => {
-        icon.addEventListener('click', function () {
-          const input = document.getElementById(this.dataset.target);
-          if (input && typeof input.showPicker === 'function') {
-            input.showPicker(); // Open native calendar/time picker
-          } else {
-            input.focus(); // Fallback for unsupported browsers
-          }
-        });
-      });
-
-      // Form submission
-      const registerForm = document.querySelector('.box-register');
-      registerForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-
-        const name = document.getElementById('RegUsername').value.trim();
-        // Full name validation (letters only, one space between names, no extra spaces)
-        const fullNameRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
-        if (!fullNameRegex.test(name)) {
-          alert('Please enter a valid full name. Use letters only, no special characters or numbers, and no leading/trailing spaces.');
-          return;
-        }
-        const dateOfBirth = document.getElementById('regDate-Birth').value.trim();
-        const dateTime = document.getElementById('regDate-Time').value.trim();
-        const dropdowns = document.querySelectorAll('.dropdown .selected');
-        const gender = dropdowns[0].innerText !== 'Gender' ? dropdowns[0].innerText : '';
-        const treatment = dropdowns[1].innerText !== 'Select Treatment' ? dropdowns[1].innerText : '';
-
-        if (!gender || !treatment) {
-          alert('Please select Gender and Treatment.');
-          return;
-        }
-
-        const nameParts = name.split(' ');
-        const firstName = nameParts[0] || '';
-        const lastName = nameParts.slice(1).join(' ') || '';
-
-        const data = {
-          firstName,
-          lastName,
-          dob: dateOfBirth,
-          gender,
-          appointmentTime: dateTime,
-          treatment
-        };
-
-        try {
-          const response = await fetch('/submit-appointment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          });
-
-          const result = await response.json();
-
-          if (response.ok && result.success) {
-            alert('Booking successful!');
-            registerForm.reset();
-            dropdowns[0].innerText = 'Gender';
-            dropdowns[1].innerText = 'Select Treatment';
-          } else {
-            alert('Booking failed: ' + (result.message || 'Unknown error'));
-          }
-        } catch (err) {
-          alert('Error connecting to server.');
-          console.error(err);
+    // Close dropdowns on outside click
+    document.addEventListener('click', e => {
+      document.querySelectorAll('.menu.menu-open').forEach(menu => {
+        if (!menu.parentElement.contains(e.target)) {
+          menu.classList.remove('menu-open');
         }
       });
     });
+
+    // Calendar icon click triggers native picker
+    document.querySelectorAll('.calendar-icon').forEach(icon => {
+      icon.addEventListener('click', function () {
+        const input = document.getElementById(this.dataset.target);
+        if (input && typeof input.showPicker === 'function') {
+          input.showPicker(); // Open native calendar/time picker
+        } else {
+          input.focus(); // Fallback for unsupported browsers
+        }
+      });
+    });
+
+    // Form submission
+    const registerForm = document.querySelector('.box-register');
+    registerForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('RegUsername').value.trim();
+      // Full name validation (letters only, one space between names, no extra spaces)
+      const fullNameRegex = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+      if (!fullNameRegex.test(name)) {
+        alert('Please enter a valid full name. Use letters only, no special characters or numbers, and no leading/trailing spaces.');
+        return;
+      }
+      const dateOfBirth = document.getElementById('regDate-Birth').value.trim();
+      const dateTime = document.getElementById('regDate-Time').value.trim();
+      const dropdowns = document.querySelectorAll('.dropdown .selected');
+      const gender = dropdowns[0].innerText !== 'Gender' ? dropdowns[0].innerText : '';
+      const treatment = dropdowns[1].innerText !== 'Select Treatment' ? dropdowns[1].innerText : '';
+
+      if (!gender || !treatment) {
+        alert('Please select Gender and Treatment.');
+        return;
+      }
+
+      const nameParts = name.split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
+
+      const data = {
+        firstName,
+        lastName,
+        dob: dateOfBirth,
+        gender,
+        appointmentTime: dateTime,
+        treatment
+      };
+
+      try {
+        const response = await fetch('/submit-appointment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          alert('Booking successful!');
+          registerForm.reset();
+          dropdowns[0].innerText = 'Gender';
+          dropdowns[1].innerText = 'Select Treatment';
+        } else {
+          alert('Booking failed: ' + (result.message || 'Unknown error'));
+        }
+      } catch (err) {
+        alert('Error connecting to server.');
+        console.error(err);
+      }
+    });
+  
   </script>
 </body>
 </html> 
+
 
 
 
