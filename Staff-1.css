@@ -350,7 +350,7 @@ body {
   }
 
   .sidebar.active ~ .home_content main.table {
-    width: 44vw; 
+    width: 42vw; 
     transition: 0.5s;
   }
 }
