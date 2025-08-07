@@ -165,12 +165,13 @@
     document.addEventListener('DOMContentLoaded', function () {
       // Set max DOB to today
       const dobInput = document.getElementById('regDate-Birth');
+
       const today = new Date();
-      dobInput.max = today.toISOString().split('T')[0];
+      dobInput.max = today.toLocaleDateString('en-CA');  // ensures local time is respected
       
-      // Set min to 100 years ago
       const hundredYearsAgo = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
-      dobInput.min = hundredYearsAgo.toISOString().split('T')[0];
+      dobInput.min = hundredYearsAgo.toLocaleDateString('en-CA');
+
 
 
       // Custom dropdown behavior
@@ -277,5 +278,6 @@
   </script>
 </body>
 </html> 
+
 
 
