@@ -346,7 +346,7 @@ body {
 
   .sidebar.active ~ .home_content {
     width: calc(100% - 150px);
-    left: 195px;
+    left: 190px;
   }
 
   .sidebar.active ~ .home_content main.table {
