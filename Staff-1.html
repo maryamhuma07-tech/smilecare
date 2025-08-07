@@ -93,77 +93,85 @@
 </div>
 
 <script>
-
-const btn = document.querySelector("#btn");
-const sidebar = document.querySelector(".sidebar");
-
-btn.onclick = function () {
-  sidebar.classList.toggle("active");
-};
-
-function showSection(sectionId) {
-  document.querySelectorAll('.content_section').forEach(sec => sec.style.display = 'none');
-  document.getElementById(sectionId).style.display = '';
-  if (sectionId === 'patient') loadPatientTable();
-  if (sectionId === 'appointment_table') loadAppointmentTable();
-}
-
-// Load only ID, Patient Name, Date of Birth, Gender for patient table
-async function loadPatientTable() {
-  try {
-    const response = await fetch('/bookings', { credentials: 'include' });
-    let bookings = await response.json();
-
-    // Sorted by ID
-    bookings.sort((a, b) => a.id - b.id);
-
-    const tbody = document.getElementById('patient-table-body');
-    tbody.innerHTML = '';
-
-    bookings.forEach((booking) => {
-      const formattedId = String(booking.id).padStart(2, '0');
-
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${formattedId}</td>
-        <td>${booking.name}</td>
-        <td>${booking.dateOfBirth}</td>
-        <td>${booking.gender}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  } catch (err) {
-    alert('Failed to load patient data.');
+  
+  // Toggle sidebar visibility on button click
+  const btn = document.querySelector("#btn");
+  const sidebar = document.querySelector(".sidebar");
+  
+  btn.onclick = function () {
+    sidebar.classList.toggle("active");
+  };
+  
+  // Show selected section and load relevant data
+  function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.content_section').forEach(sec => sec.style.display = 'none');
+  
+    // Show the selected section
+    document.getElementById(sectionId).style.display = '';
+  
+    // Load data if needed
+    if (sectionId === 'patient') loadPatientTable();
+    if (sectionId === 'appointment_table') loadAppointmentTable();
   }
-}
-
-
-// Load all columns for appointment table
-async function loadAppointmentTable() {
-  try {
-    const response = await fetch('/bookings', { credentials: 'include' });
-    const bookings = await response.json();
-    const tbody = document.getElementById('appointment-table-body');
-    tbody.innerHTML = '';
-    bookings.forEach(booking => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${booking.id}</td>
-        <td>${booking.name}</td>
-        <td>${booking.dateOfBirth}</td>
-        <td>${booking.gender}</td>
-        <td>${booking.dateTime}</td>
-        <td>${booking.treatment}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  } catch (err) {
-    alert('Failed to load appointment data.');
+  
+  
+  // Load only ID, Patient Name, Date of Birth, Gender for patient table
+  async function loadPatientTable() {
+    try {
+      const response = await fetch('/bookings', { credentials: 'include' });
+      let bookings = await response.json();
+  
+      // Sorted by ID
+      bookings.sort((a, b) => a.id - b.id);
+  
+      const tbody = document.getElementById('patient-table-body');
+      tbody.innerHTML = '';
+  
+      bookings.forEach((booking) => {
+        const formattedId = String(booking.id).padStart(2, '0');
+  
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${formattedId}</td>
+          <td>${booking.name}</td>
+          <td>${booking.dateOfBirth}</td>
+          <td>${booking.gender}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } catch (err) {
+      alert('Failed to load patient data.');
+    }
   }
-}
-
-//load dashboard by default
-showSection('dashboard');
+  
+  
+  // Load all columns for appointment table
+  async function loadAppointmentTable() {
+    try {
+      const response = await fetch('/bookings', { credentials: 'include' });
+      const bookings = await response.json();
+      const tbody = document.getElementById('appointment-table-body');
+      tbody.innerHTML = '';
+      bookings.forEach(booking => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${booking.id}</td>
+          <td>${booking.name}</td>
+          <td>${booking.dateOfBirth}</td>
+          <td>${booking.gender}</td>
+          <td>${booking.dateTime}</td>
+          <td>${booking.treatment}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } catch (err) {
+      alert('Failed to load appointment data.');
+    }
+  }
+  
+  //load dashboard by default
+  showSection('dashboard');
 </script>
 
 </body>
