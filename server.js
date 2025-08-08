@@ -114,8 +114,8 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'Login.html'));
 });
 
-app.get('/Staff-1.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'Staff-1.html'));
+app.get('/Staff.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Staff.html'));
 });
 
 // ✅ Basic login handler (mock auth)
@@ -140,5 +140,6 @@ app.listen(port, () => {
   console.log('  GET /bookings - Get all bookings');
   console.log('  GET / - Root page (Home.html)');
   console.log('  GET /login - Login page');
-  console.log('  GET /Staff-1.html - Staff dashboard');
+  console.log('  GET /Staff.html - Staff dashboard');
 });
+
