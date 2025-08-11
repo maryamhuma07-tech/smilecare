@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: dental-appointment-system
+    env: node
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    plan: free
+    branch: main
+    routes:
+      - type: https
+        src: /*
+        dest: /
+    envVars:
+      - key: DATABASE_URL
+        value: ${DATABASE_URL}  
+      - key: NODE_ENV
+        value: production
+
+databases:
+  - name: smilecare
+    type: postgres
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        value: ${DATABASE_URL}
