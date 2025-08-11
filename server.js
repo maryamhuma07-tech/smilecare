@@ -9,31 +9,35 @@ const port = 3002;
 
 // Set up PostgreSQL connection using environment variable DATABASE_URL
 const client = new Client({
-  connectionString: process.env.DATABASE_URL,  // Use the DATABASE_URL set in Render's environment variables
-  ssl: { rejectUnauthorized: false }  // Enable SSL for secure connection (required for Supabase)
+  connectionString: process.env.database_url,  
+  ssl: { rejectUnauthorized: false } 
 });
 
 // Connect to PostgreSQL database
 client.connect()
   .then(() => console.log('✅ Connected to PostgreSQL database.'))
-  .catch(err => console.error('❌ Error connecting to PostgreSQL:', err.message));
+  .catch(err => {
+    console.error('❌ Error connecting to PostgreSQL:', err.message);
+  });
 
 // Create appointments table if it doesn't exist
 const createTableSql = `
-  CREATE TABLE IF NOT EXISTS appointments (
+  CREATE TABLE IF NOT EXISTS smilecare (
     id SERIAL PRIMARY KEY,
-    first_name TEXT,
-    last_name TEXT,
-    dob TEXT,
-    gender TEXT,
-    appointment_time TIMESTAMP UNIQUE,
-    treatment TEXT
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    dob DATE NOT NULL,
+    gender TEXT NOT NULL,
+    appointment_time TIMESTAMP WITH TIME ZONE NOT NULL UNIQUE,
+    treatment TEXT NOT NULL
   );
 `;
 
 client.query(createTableSql)
   .then(() => console.log('✅ Appointments table created or already exists.'))
-  .catch(err => console.error('❌ Error creating table:', err.message));
+  .catch(err => {
+    console.error('❌ Error creating table:', err.message);
+  });
 
 // Middleware
 app.use(cors());
@@ -53,7 +57,7 @@ app.post('/submit-appointment', (req, res) => {
   const bufferEnd = new Date(selectedTime.getTime() + 30 * 60000).toISOString();
 
   const conflictQuery = `
-    SELECT * FROM appointments
+    SELECT * FROM smilecare
     WHERE appointment_time BETWEEN $1 AND $2
   `;
 
@@ -68,7 +72,7 @@ app.post('/submit-appointment', (req, res) => {
 
       // Insert appointment
       const insertSql = `
-        INSERT INTO appointments (first_name, last_name, dob, gender, appointment_time, treatment)
+        INSERT INTO smilecare (first_name, last_name, dob, gender, appointment_time, treatment)
         VALUES ($1, $2, $3, $4, $5, $6) RETURNING id
       `;
 
@@ -90,7 +94,7 @@ app.post('/submit-appointment', (req, res) => {
 
 // Get all bookings (sorted by oldest, formatted ID)
 app.get('/bookings', (req, res) => {
-  const query = 'SELECT * FROM appointments ORDER BY id ASC';
+  const query = 'SELECT * FROM smilecare ORDER BY id ASC';
 
   client.query(query)
     .then(result => {
