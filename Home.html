@@ -500,7 +500,7 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
-                            <i class="fa-soild fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
                         </div>
                     </main>
                     <!-- Profile section of the reviewer -->
@@ -590,7 +590,7 @@
     <script>
         // Initialize the OwlCarousel for the testimonials container
         var $carousel = $('.testimonials-container');
-        
+    
         // Set up OwlCarousel options
         $carousel.owlCarousel({
             loop: true, // Enables infinite looping of slides
@@ -617,7 +617,7 @@
                 }
             }
         });
-
+    
         // Handle click events on the navigation arrows to restart autoplay after clicking
         $carousel.on('click', '.owl-prev, .owl-next', function () {
             $carousel.trigger('stop.owl.autoplay'); // Stop autoplay when an arrow is clicked
@@ -625,7 +625,18 @@
                 $carousel.trigger('play.owl.autoplay', [5000]); // Restart autoplay after 6.2 seconds
             }, 6200); 
         });
+    
+        // Restart autoplay on drag/swipe event
+        $carousel.on('changed.owl.carousel', function(event) {
+            if (event.namespace && event.property.name === 'position') {
+                $carousel.trigger('stop.owl.autoplay'); // Stop autoplay on slide change
+                setTimeout(function () {
+                    $carousel.trigger('play.owl.autoplay', [5000]); // Restart autoplay after 6.2 seconds
+                }, 6200);
+            }
+        });
     </script>
+
 
     </section>
 
@@ -691,6 +702,7 @@
 
 </body>
 </html>
+
 
 
 
